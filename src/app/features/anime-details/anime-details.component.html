@@ -1,1 +1,23 @@
-<h1>Anime Details</h1>
+<div *ngIf="anime">
+
+    <img [src]="anime.image || anime.images?.jpg?.image_url" [alt]="anime.title">
+
+    <h1>{{ anime.title }}</h1>
+
+    <p>
+        Episodes: {{ anime.episodes }}
+    </p>
+
+    <p>
+        Score: {{ anime.score }}
+    </p>
+
+    <p>
+        {{ anime.synopsis }}
+    </p>
+
+    <button (click)="addToWatchlist()">
+        Add to Watchlist
+    </button>
+
+</div>

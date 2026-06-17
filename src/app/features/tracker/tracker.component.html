@@ -1,1 +1,10 @@
-<h1>My Tracker</h1>
+<h2>My Watchlist</h2>
+
+<div class="results">
+
+  <app-anime-card
+    *ngFor="let anime of watchlist"
+    [anime]="anime">
+  </app-anime-card>
+
+</div>

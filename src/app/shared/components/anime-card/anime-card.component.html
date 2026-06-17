@@ -1,17 +1,17 @@
 <div class="anime-card">
 
-  <img
-    [src]="anime.images.jpg.image_url"
-    [alt]="anime.title">
+  <img [src]="anime.image || anime.images?.jpg?.image_url" [alt]="anime.title">
 
   <h3>{{ anime.title }}</h3>
 
-  <p>
-    Episodes: {{ anime.episodes }}
-  </p>
+  <p>Episodes: {{ anime.episodes }}</p>
 
-  <p>
+  <p *ngIf="anime.score">
     Score: {{ anime.score }}
   </p>
+
+  <button *ngIf="anime.mal_id" [routerLink]="['/anime', anime.mal_id]">
+    View Details
+  </button>
 
 </div>
