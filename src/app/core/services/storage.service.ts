@@ -14,26 +14,46 @@ export class StorageService {
   }
 
   addToWatchlist(anime: any) {
-    console.log('Storage Service Called');
 
     const watchlist = this.getWatchlist();
 
-    console.log('Before Push:', watchlist);
+    const exists = watchlist.some(
+      (a: any) => a.mal_id === anime.mal_id
+    );
+
+    if (exists) {
+      return false;
+    }
 
     watchlist.push(anime);
-
-    console.log('After Push:', watchlist);
 
     localStorage.setItem(
       'watchlist',
       JSON.stringify(watchlist)
     );
-    
-    console.log(
-      'Saved:',
-      localStorage.getItem('watchlist')
+
+    return true;
+  }
+
+  updateAnime(updatedAnime: any) {
+
+    const watchlist = this.getWatchlist();
+
+    const updatedWatchlist = watchlist.map(
+      (anime: any) => {
+
+        if (anime.mal_id === updatedAnime.mal_id) {
+          return updatedAnime;
+        }
+
+        return anime;
+      }
     );
 
+    localStorage.setItem(
+      'watchlist',
+      JSON.stringify(updatedWatchlist)
+    );
   }
 
 }

@@ -32,8 +32,6 @@ export class AnimeDetailsComponent implements OnInit {
   }
 
   addToWatchlist() {
-    console.log('Button clicked');
-    console.log(this.anime);
 
     const animeToSave = {
       mal_id: this.anime.mal_id,
@@ -44,12 +42,14 @@ export class AnimeDetailsComponent implements OnInit {
       status: 'Plan to Watch'
     };
 
-    console.log(animeToSave);
+    const added =
+      this.storageService
+        .addToWatchlist(animeToSave);
 
-
-    this.storageService
-      .addToWatchlist(animeToSave);
-
-    alert('Added to watchlist!');
+    if (added) {
+      alert('Added to watchlist!');
+    } else {
+      alert('Anime already exists!');
+    }
   }
 }

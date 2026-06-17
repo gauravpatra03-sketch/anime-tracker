@@ -1,10 +1,46 @@
-<h2>My Watchlist</h2>
+<div class="anime-card" *ngFor="let anime of watchlist">
 
-<div class="results">
+    <select [(ngModel)]="anime.status" (change)="updateStatus(anime)">
+        <option value="Plan to Watch">
+            Plan to Watch
+        </option>
 
-  <app-anime-card
-    *ngFor="let anime of watchlist"
-    [anime]="anime">
-  </app-anime-card>
+        <option value="Watching">
+            Watching
+        </option>
+
+        <option value="Completed">
+            Completed
+        </option>
+
+        <option value="Dropped">
+            Dropped
+        </option>
+
+        <option value="On Hold">
+            On Hold
+        </option>
+    </select>
+
+    <img [src]="anime.image" width="150">
+
+    <h3>{{ anime.title }}</h3>
+
+    <p>
+        {{ anime.watchedEpisodes }}
+        /
+        {{ anime.episodes }}
+    </p>
+
+    <button (click)="decreaseEpisode(anime)">
+        -
+    </button>
+
+    <button (click)="increaseEpisode(anime)">
+        +
+    </button>
+    
+    <app-progress-bar [watchedEpisodes]="anime.watchedEpisodes" [totalEpisodes]="anime.episodes">
+    </app-progress-bar>
 
 </div>

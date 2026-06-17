@@ -1,1 +1,12 @@
-<p>progress-bar works!</p>
+<div class="progress-container">
+
+  <div
+    class="progress-fill"
+    [style.width.%]="getProgressPercentage()">
+  </div>
+
+</div>
+
+<p>
+  {{ getProgressPercentage() }}%
+</p>

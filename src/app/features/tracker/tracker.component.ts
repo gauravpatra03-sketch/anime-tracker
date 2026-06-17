@@ -13,12 +13,45 @@ export class TrackerComponent {
 
   constructor(
     private storageService: StorageService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.watchlist =
       this.storageService.getWatchlist();
 
     console.log(this.watchlist);
+  }
+
+  increaseEpisode(anime: any) {
+
+    if (
+      anime.watchedEpisodes
+      <
+      anime.episodes
+    ) {
+
+      anime.watchedEpisodes++;
+
+      this.storageService
+        .updateAnime(anime);
+    }
+  }
+
+  decreaseEpisode(anime: any) {
+
+    if (
+      anime.watchedEpisodes > 0
+    ) {
+
+      anime.watchedEpisodes--;
+
+      this.storageService
+        .updateAnime(anime);
+    }
+  }
+
+  updateStatus(anime: any) {
+    this.storageService
+      .updateAnime(anime);
   }
 }
