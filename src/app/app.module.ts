@@ -14,6 +14,9 @@ import { TrackerComponent } from './features/tracker/tracker.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
 import { SettingsComponent } from './features/settings/settings.component';
 
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +33,11 @@ import { SettingsComponent } from './features/settings/settings.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

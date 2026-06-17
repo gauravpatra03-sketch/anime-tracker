@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-anime-card',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./anime-card.component.css']
 })
 export class AnimeCardComponent {
-
+  @Input() anime: any;
 }

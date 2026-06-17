@@ -1,14 +1,12 @@
 <h2>Search Anime</h2>
 
-<input
-  type="text"
-  placeholder="Search anime..."
->
+<input type="text" [(ngModel)]="searchText" placeholder="Search anime" />
 
-<button>
-  Search
+<button (click)="search()">
+    Search
 </button>
 
 <div class="results">
-
+    <app-anime-card *ngFor="let anime of animes" [anime]="anime">
+    </app-anime-card>
 </div>
