@@ -1,5 +1,5 @@
 export interface UserAnime {
-  mal_id: number;
+  id: number;
   title: string;
   image: string;
   episodes: number;

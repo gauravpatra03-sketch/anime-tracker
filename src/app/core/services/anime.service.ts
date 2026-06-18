@@ -11,15 +11,77 @@ export class AnimeService {
 
   constructor(private http: HttpClient) { }
 
-  searchAnime(query: string): Observable<any> {
-    return this.http.get<any>(
-      `${this.baseUrl}/anime?q=${query}`
+  searchAnime(search: string) {
+
+    const query = `
+    query ($search: String) {
+      Page {
+        media(
+          search: $search,
+          type: ANIME
+        ) {
+          id
+          title {
+            romaji
+            english
+          }
+          episodes
+          coverImage {
+            large
+          }
+          averageScore
+        }
+      }
+    }
+  `;
+
+    const variables = {
+      search: search
+    };
+
+    return this.http.post<any>(
+      'https://graphql.anilist.co',
+      {
+        query,
+        variables
+      }
     );
   }
 
   getAnimeById(id: number) {
-    return this.http.get<any>(
-      `${this.baseUrl}/anime/${id}`
+
+    const query = `
+    query ($id: Int) {
+      Media(
+        id: $id,
+        type: ANIME
+      ) {
+        id
+        title {
+          romaji
+          english
+        }
+        description
+        episodes
+        averageScore
+        coverImage {
+          large
+        }
+        bannerImage
+        genres
+        status
+      }
+    }
+  `;
+
+    return this.http.post<any>(
+      'https://graphql.anilist.co',
+      {
+        query,
+        variables: {
+          id: id
+        }
+      }
     );
   }
 }

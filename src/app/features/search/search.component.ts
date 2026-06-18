@@ -7,6 +7,7 @@ import {
 } from 'rxjs';
 import { retry } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -31,8 +32,8 @@ export class SearchComponent implements OnInit {
       this.animes = [];
       this.errorMessage =
         'Please type at least 3 characters.';
-        this.isLoading = false;
-        return;
+      this.isLoading = false;
+      return;
     }
 
     this.isLoading = true;
@@ -45,7 +46,7 @@ export class SearchComponent implements OnInit {
       )
       .subscribe({
         next: (res: any) => {
-          this.animes = res.data || [];
+          this.animes = res.data.Page.media || [];
           this.isLoading = false;
         },
         error: () => {
@@ -68,8 +69,10 @@ export class SearchComponent implements OnInit {
         retry(2)
       )
       .subscribe({
-        next: (res) => {
-          this.animes = res.data || [];
+        next: (res: any) => {
+          this.animes =
+            res.data.Page.media || [];
+
           this.isLoading = false;
         },
         error: () => {
