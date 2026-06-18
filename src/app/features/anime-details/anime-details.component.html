@@ -1,6 +1,6 @@
 <div *ngIf="anime">
 
-    <img [src]="anime.image || anime.images?.jpg?.image_url" [alt]="anime.title">
+    <img [src]="anime.images.jpg.image_url" [alt]="anime.title">
 
     <h1>{{ anime.title }}</h1>
 

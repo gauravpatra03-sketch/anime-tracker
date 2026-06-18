@@ -1,10 +1,23 @@
 <h2>Search Anime</h2>
 
-<input type="text" [(ngModel)]="searchText" placeholder="Search anime" />
+<input [(ngModel)]="searchText" (input)="onSearch()" placeholder="Search anime...">
+
+<p *ngIf="searchText.length > 0 &&
+          searchText.length < 3">
+  Type at least 3 characters...
+</p>
 
 <button (click)="search()">
     Search
 </button>
+
+<div *ngIf="isLoading">
+  🔍 Searching anime...
+</div>
+
+<div *ngIf="errorMessage">
+  ⚠️ {{ errorMessage }}
+</div>
 
 <div class="results">
     <app-anime-card *ngFor="let anime of animes" [anime]="anime">
