@@ -14,6 +14,11 @@ body {
   color: white;
 }
 
+.dark-theme .stat-card h3,
+.dark-theme .stat-card p {
+  color: #1e1e1e;
+}
+
 .dark-theme .anime-card {
   background: #1e1e1e;
   color: white;
