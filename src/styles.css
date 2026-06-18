@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Arial;
+  transition: 0.3s;
+}
+
+.dark-theme {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-theme .stat-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark-theme .stat-card h3,
+.dark-theme .stat-card p {
+  color: #1e1e1e;
+}
+
+.dark-theme .anime-card {
+  background: #1e1e1e;
+  color: white;
+}
+
+.dark-theme input,
+.dark-theme select {
+  background: #2d2d2d;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark-theme {
+  background-color: #121212;
+  color: white;
+}
+
+.dark-theme button {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark-theme a {
+  color: #90caf9;
+}
