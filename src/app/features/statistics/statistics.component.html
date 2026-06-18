@@ -1,15 +1,40 @@
 <h1>Anime Statistics 📊</h1>
 
-<p>Total Anime: {{ totalAnime }}</p>
+<div class="stats-container">
 
-<p>Episodes Watched: {{ episodesWatched }}</p>
+  <div class="stat-card">
+    <h3>📺 Total Anime</h3>
+    <p>{{ totalAnime }}</p>
+  </div>
 
-<p>Completed: {{ completed }}</p>
+  <div class="stat-card">
+    <h3>🎬 Episodes Watched</h3>
+    <p>{{ episodesWatched }}</p>
+  </div>
 
-<p>Watching: {{ watching }}</p>
+  <div class="stat-card">
+    <h3>👀 Watching</h3>
+    <p>{{ watching }}</p>
+  </div>
 
-<p>Plan to Watch: {{ planToWatch }}</p>
+  <div class="stat-card">
+    <h3>✅ Completed</h3>
+    <p>{{ completed }}</p>
+  </div>
 
-<p>Dropped: {{ dropped }}</p>
+  <div class="stat-card">
+    <h3>📝 Plan to Watch</h3>
+    <p>{{ planToWatch }}</p>
+  </div>
 
-<p>Completion: {{ completionPercentage }}%</p>
+  <div class="stat-card">
+    <h3>❌ Dropped</h3>
+    <p>{{ dropped }}</p>
+  </div>
+
+  <div class="stat-card">
+    <h3>📈 Completion</h3>
+    <p>{{ completionPercentage }}%</p>
+  </div>
+
+</div>
