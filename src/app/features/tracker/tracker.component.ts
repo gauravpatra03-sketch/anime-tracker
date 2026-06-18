@@ -20,6 +20,10 @@ export class TrackerComponent {
       this.storageService.getWatchlist();
 
     console.log(this.watchlist);
+    console.log(
+      'Is Array:',
+      Array.isArray(this.watchlist)
+    );
   }
 
   increaseEpisode(anime: any) {

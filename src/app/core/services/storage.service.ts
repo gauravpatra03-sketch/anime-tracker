@@ -18,7 +18,7 @@ export class StorageService {
     const watchlist = this.getWatchlist();
 
     const exists = watchlist.some(
-      (a: any) => a.mal_id === anime.mal_id
+      (a: any) => a.id === anime.id
     );
 
     if (exists) {
@@ -42,7 +42,7 @@ export class StorageService {
     const updatedWatchlist = watchlist.map(
       (anime: any) => {
 
-        if (anime.mal_id === updatedAnime.mal_id) {
+        if (anime.id === updatedAnime.id) {
           return updatedAnime;
         }
 

@@ -1,4 +1,4 @@
-<div class="anime-card" *ngFor="let anime of watchlist">
+<div class="results" *ngFor="let anime of watchlist">
 
     <select [(ngModel)]="anime.status" (change)="updateStatus(anime)">
         <option value="Plan to Watch">

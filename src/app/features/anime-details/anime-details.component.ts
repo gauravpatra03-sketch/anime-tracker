@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimeService } from 'src/app/core/services/anime.service';
-import { StorageService }
-  from 'src/app/core/services/storage.service';
+import { StorageService } from 'src/app/core/services/storage.service';
 
 @Component({
   selector: 'app-anime-details',
@@ -27,16 +26,17 @@ export class AnimeDetailsComponent implements OnInit {
     this.animeService
       .getAnimeById(id)
       .subscribe((response: any) => {
-        this.anime = response.data;
+        this.anime =
+          response.data.Media;
       });
   }
 
   addToWatchlist() {
 
     const animeToSave = {
-      mal_id: this.anime.mal_id,
-      title: this.anime.title,
-      image: this.anime.images.jpg.image_url,
+      id: this.anime.id,
+      title: this.anime.title.romaji,
+      image: this.anime.coverImage.large,
       episodes: this.anime.episodes,
       watchedEpisodes: 0,
       status: 'Plan to Watch'
