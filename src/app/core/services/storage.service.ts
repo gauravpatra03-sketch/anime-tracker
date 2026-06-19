@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Anime } from 'src/app/models/anime';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +9,8 @@ export class StorageService {
 
   constructor() { }
 
-  private favoritesSubject = new BehaviorSubject<any[]>(this.getFavorites());
-favorites$ = this.favoritesSubject.asObservable();
+  private favoritesSubject = new BehaviorSubject<Anime[]>(this.getFavorites());
+  favorites$ = this.favoritesSubject.asObservable();
 
   getWatchlist() {
     return JSON.parse(
@@ -17,12 +18,12 @@ favorites$ = this.favoritesSubject.asObservable();
     );
   }
 
-  addToWatchlist(anime: any) {
+  addToWatchlist(anime: Anime) {
 
     const watchlist = this.getWatchlist();
 
     const exists = watchlist.some(
-      (a: any) => a.id === anime.id
+      (a: Anime) => a.id === anime.id
     );
 
     if (exists) {
@@ -39,12 +40,12 @@ favorites$ = this.favoritesSubject.asObservable();
     return true;
   }
 
-  updateAnime(updatedAnime: any) {
+  updateAnime(updatedAnime: Anime) {
 
     const watchlist = this.getWatchlist();
 
     const updatedWatchlist = watchlist.map(
-      (anime: any) => {
+      (anime: Anime) => {
 
         if (anime.id === updatedAnime.id) {
           return updatedAnime;
@@ -64,39 +65,39 @@ favorites$ = this.favoritesSubject.asObservable();
     return JSON.parse(localStorage.getItem('favorites') || '[]');
   }
 
-  toggleFavorite(anime: any) {
-  const favorites = this.getFavorites();
+  toggleFavorite(anime: Anime) {
+    const favorites = this.getFavorites();
 
-  const exists = favorites.some((a: any) => a.id === anime.id);
+    const exists = favorites.some((a: Anime) => a.id === anime.id);
 
-  let updated;
+    let updated;
 
-  if (exists) {
-    updated = favorites.filter((a: any) => a.id !== anime.id);
-  } else {
-    updated = [...favorites, anime];
+    if (exists) {
+      updated = favorites.filter((a: Anime) => a.id !== anime.id);
+    } else {
+      updated = [...favorites, anime];
+    }
+
+    localStorage.setItem('favorites', JSON.stringify(updated));
+
+    // 🔥 notify all components instantly
+    this.favoritesSubject.next(updated);
   }
 
-  localStorage.setItem('favorites', JSON.stringify(updated));
-
-  // 🔥 notify all components instantly
-  this.favoritesSubject.next(updated);
-}
-
-  isFavorite(anime: any): boolean {
+  isFavorite(anime: Anime): boolean {
     const favorites = this.getFavorites();
-    return favorites.some((a: any) => a.id === anime.id);
+    return favorites.some((a: Anime) => a.id === anime.id);
   }
 
   getRecentlyViewed() {
     return JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
   }
 
-  addToRecentlyViewed(anime: any) {
+  addToRecentlyViewed(anime: Anime) {
     let list = this.getRecentlyViewed();
 
     // remove if already exists
-    list = list.filter((a: any) => a.id !== anime.id);
+    list = list.filter((a: Anime) => a.id !== anime.id);
 
     // add to top
     list.unshift(anime);
@@ -107,4 +108,15 @@ favorites$ = this.favoritesSubject.asObservable();
     localStorage.setItem('recentlyViewed', JSON.stringify(list));
   }
 
+  getContinueWatching() {
+    const watchlist = this.getWatchlist();
+
+    return watchlist.filter(
+      (anime: Anime) =>
+        anime.watchedEpisodes &&
+        anime.episodes &&
+        anime.watchedEpisodes > 0 &&
+        anime.watchedEpisodes < anime.episodes
+    );
+  }
 }

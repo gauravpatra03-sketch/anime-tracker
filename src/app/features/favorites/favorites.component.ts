@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { Anime } from 'src/app/models/anime';
+
 
 @Component({
   selector: 'app-favorites',
@@ -8,7 +10,7 @@ import { StorageService } from 'src/app/core/services/storage.service';
 })
 export class FavoritesComponent {
 
-  favorites: any[] = [];
+  favorites: Anime[] = [];
 
   constructor(private storageService: StorageService) { }
 
@@ -22,7 +24,7 @@ export class FavoritesComponent {
     this.favorites = this.storageService.getFavorites();
   }
 
-  remove(anime: any) {
+  remove(anime: Anime) {
     this.storageService.toggleFavorite(anime);
     this.loadFavorites();
   }

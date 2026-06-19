@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FavoritesComponent } from './features/favorites/favorites.component';
 import { RecentlyViewedComponent } from './features/recently-viewed/recently-viewed.component';
+import { ContinueWatchingComponent } from './features/continue-watching/continue-watching.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RecentlyViewedComponent } from './features/recently-viewed/recently-vie
     StatisticsComponent,
     SettingsComponent,
     FavoritesComponent,
-    RecentlyViewedComponent
+    RecentlyViewedComponent,
+    ContinueWatchingComponent
   ],
   imports: [
     BrowserModule,

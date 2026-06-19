@@ -6,6 +6,8 @@ import {
   distinctUntilChanged
 } from 'rxjs';
 import { retry } from 'rxjs/operators';
+import { Anime } from 'src/app/models/anime';
+
 
 
 @Component({
@@ -16,7 +18,7 @@ import { retry } from 'rxjs/operators';
 export class SearchComponent implements OnInit {
 
   searchText: string = '';
-  animes: any[] = [];
+  animes: Anime[] = [];
 
   isLoading = false;
   errorMessage = '';

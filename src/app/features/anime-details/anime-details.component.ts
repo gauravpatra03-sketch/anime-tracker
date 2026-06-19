@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimeService } from 'src/app/core/services/anime.service';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { Anime } from 'src/app/models/anime';
+
 
 @Component({
   selector: 'app-anime-details',
@@ -10,7 +12,7 @@ import { StorageService } from 'src/app/core/services/storage.service';
 })
 export class AnimeDetailsComponent implements OnInit {
 
-  anime: any;
+  anime?: Anime;
 
   constructor(
     private route: ActivatedRoute,
@@ -19,39 +21,53 @@ export class AnimeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-  this.animeService.getAnimeById(id).subscribe({
-    next: (response: any) => {
-      console.log("API RESPONSE:", response);
+    this.animeService.getAnimeById(id).subscribe({
+      next: (response: any) => {
+        console.log("API RESPONSE:", response);
 
-      const media = response.data.Media;
+        const media = response.data.Media;
 
-      this.anime = {
-        id: media.id,
-        title: media.title,
-        coverImage: media.coverImage,
-        episodes: media.episodes,
-        score: media.averageScore,
-        synopsis: media.description
-      };
+        this.anime = {
+          id: media.id,
+          title: media.title,
+          coverImage: media.coverImage,
+          episodes: media.episodes,
+          score: media.averageScore,
+          synopsis: media.description
+        };
 
-      this.storageService.addToRecentlyViewed(this.anime);
-    },
-    error: (err) => {
-      console.log("API ERROR:", err);
-    }
-  });
-}
+        this.storageService.addToRecentlyViewed(this.anime);
+      },
+      error: (err) => {
+        console.log("API ERROR:", err);
+      }
+    });
+  }
 
   addToWatchlist() {
 
-    const animeToSave = {
+    if (!this.anime) {
+      return;
+    }
+
+    const animeToSave: Anime = {
       id: this.anime.id,
-      title: this.anime.title.romaji,
-      image: this.anime.coverImage.large,
-      episodes: this.anime.episodes,
+
+      title:
+        typeof this.anime.title === 'string'
+          ? this.anime.title
+          : this.anime.title?.romaji || '',
+
+      image:
+        this.anime.coverImage?.large || '',
+
+      episodes:
+        this.anime.episodes,
+
       watchedEpisodes: 0,
+
       status: 'Plan to Watch'
     };
 
@@ -61,10 +77,25 @@ export class AnimeDetailsComponent implements OnInit {
 
     if (added) {
       alert('Added to watchlist!');
-    } else {
+    }
+    else {
       alert('Anime already exists!');
     }
   }
 
+  getTitle(): string {
+    if (!this.anime) {
+      return '';
+    }
 
+    if (typeof this.anime.title === 'string') {
+      return this.anime.title;
+    }
+
+    return (
+      this.anime.title?.english ||
+      this.anime.title?.romaji ||
+      ''
+    );
+  }
 }
