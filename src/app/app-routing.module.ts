@@ -6,6 +6,8 @@ import { AnimeDetailsComponent } from './features/anime-details/anime-details.co
 import { TrackerComponent } from './features/tracker/tracker.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
 import { SettingsComponent } from './features/settings/settings.component';
+import { FavoritesComponent } from './features/favorites/favorites.component';
+import { RecentlyViewedComponent } from './features/recently-viewed/recently-viewed.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'tracker', component: TrackerComponent },
   { path: 'statistics', component: StatisticsComponent },
   { path: 'settings', component: SettingsComponent },
+  { path: 'favorites', component: FavoritesComponent },
+  { path: 'recent', component: RecentlyViewedComponent },
   { path: '**', redirectTo: '' }
 ];
 

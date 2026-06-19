@@ -19,17 +19,30 @@ export class AnimeDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
-    );
+  const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.animeService
-      .getAnimeById(id)
-      .subscribe((response: any) => {
-        this.anime =
-          response.data.Media;
-      });
-  }
+  this.animeService.getAnimeById(id).subscribe({
+    next: (response: any) => {
+      console.log("API RESPONSE:", response);
+
+      const media = response.data.Media;
+
+      this.anime = {
+        id: media.id,
+        title: media.title,
+        coverImage: media.coverImage,
+        episodes: media.episodes,
+        score: media.averageScore,
+        synopsis: media.description
+      };
+
+      this.storageService.addToRecentlyViewed(this.anime);
+    },
+    error: (err) => {
+      console.log("API ERROR:", err);
+    }
+  });
+}
 
   addToWatchlist() {
 
@@ -52,4 +65,6 @@ export class AnimeDetailsComponent implements OnInit {
       alert('Anime already exists!');
     }
   }
+
+
 }

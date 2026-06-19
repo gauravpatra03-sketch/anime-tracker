@@ -1,13 +1,18 @@
 <a routerLink="/">Home</a>
 <a routerLink="/search">Search</a>
+<a routerLink="/recent">
+    🔥 Recently Viewed
+</a>
 <a routerLink="/tracker">Tracker</a>
 <a routerLink="/statistics">Statistics</a>
+<a routerLink="/favorites">
+    ❤️ Favorites ({{ favoritesCount }})
+</a>
 <a routerLink="/settings">Settings</a>
-<button
-  (click)="themeService.toggleTheme()">
+<button (click)="themeService.toggleTheme()">
 
-  {{ themeService.isDarkMode
-      ? '☀️ Light'
-      : '🌙 Dark' }}
+    {{ themeService.isDarkMode
+    ? '☀️ Light'
+    : '🌙 Dark' }}
 
 </button>

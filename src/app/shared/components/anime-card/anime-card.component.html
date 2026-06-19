@@ -1,8 +1,10 @@
-<div class="anime-card">
+<div class="anime-card" *ngIf="anime">
 
-  <img [src]="anime.coverImage.large" [alt]="anime.title.romaji">
+  <img [src]="anime?.coverImage?.large || anime?.image" [alt]="anime?.title?.romaji || anime?.title" />
 
-  <h3>{{ anime.title.romaji }}</h3>
+  <h3>
+    {{ anime?.title?.romaji || anime?.title?.english || anime?.title }}
+  </h3>
 
   <p>Episodes: {{ anime.episodes }}</p>
 
@@ -12,6 +14,10 @@
 
   <button *ngIf="anime.id" [routerLink]="['/anime', anime.id]">
     View Details
+  </button>
+
+  <button (click)="toggleFavorite(anime)">
+    {{ isFav ? '❤️ Favorited' : '🤍 Favorite' }}
   </button>
 
 </div>

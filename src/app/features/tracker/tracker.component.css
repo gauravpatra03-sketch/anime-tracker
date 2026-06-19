@@ -1,5 +1,21 @@
 .results {
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.anime-card {
+  width: 300px;
+}
+
+@media (max-width: 768px) {
+
+  .anime-card {
+    width: 100%;
+  }
+
+  .anime-card img {
+    width: 120px;
+  }
 }
