@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { Anime } from 'src/app/models/anime';
+
 
 @Component({
   selector: 'app-recently-viewed',
@@ -8,7 +10,7 @@ import { StorageService } from 'src/app/core/services/storage.service';
 })
 export class RecentlyViewedComponent {
 
-  recentlyViewed: any[] = [];
+  recentlyViewed: Anime[] = [];
 
   constructor(private storageService: StorageService) {}
 

@@ -1,22 +1,34 @@
 <div class="anime-card" *ngIf="anime">
 
-  <img [src]="anime?.coverImage?.large || anime?.image" [alt]="anime?.title?.romaji || anime?.title" />
+  <img
+    [src]="getImage()"
+    [alt]="getTitle()"
+  />
 
   <h3>
-    {{ anime?.title?.romaji || anime?.title?.english || anime?.title }}
+    {{ getTitle() }}
   </h3>
 
-  <p>Episodes: {{ anime.episodes }}</p>
-
-  <p *ngIf="anime.score">
-    Score: {{ anime.score }}
+  <p>
+    Episodes:
+    {{ anime.episodes || 'Unknown' }}
   </p>
 
-  <button *ngIf="anime.id" [routerLink]="['/anime', anime.id]">
+  <p *ngIf="anime.score">
+    Score:
+    {{ anime.score }}
+  </p>
+
+  <button
+    *ngIf="anime.id"
+    [routerLink]="['/anime', anime.id]"
+  >
     View Details
   </button>
 
-  <button (click)="toggleFavorite(anime)">
+  <button
+    (click)="toggleFavorite(anime)"
+  >
     {{ isFav ? '❤️ Favorited' : '🤍 Favorite' }}
   </button>
 

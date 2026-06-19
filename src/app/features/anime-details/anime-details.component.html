@@ -1,9 +1,9 @@
 <div *ngIf="anime">
 
-    <img [src]="anime?.coverImage?.large" [alt]="anime?.title?.english || anime?.title?.romaji">
+    <img [src]="anime?.coverImage?.large" [alt]="getTitle()">
 
     <h1>
-        {{ anime?.title?.english || anime?.title?.romaji }}
+        {{ getTitle() }}
     </h1>
 
     <p>Episodes: {{ anime?.episodes }}</p>

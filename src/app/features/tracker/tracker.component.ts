@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
+import { Anime } from 'src/app/models/anime';
+
 
 @Component({
   selector: 'app-tracker',
@@ -9,7 +11,7 @@ import { StorageService } from 'src/app/core/services/storage.service';
 
 export class TrackerComponent {
 
-  watchlist: any[] = [];
+  watchlist: Anime[] = [];
 
   constructor(
     private storageService: StorageService
@@ -26,35 +28,34 @@ export class TrackerComponent {
     );
   }
 
-  increaseEpisode(anime: any) {
+  increaseEpisode(anime: Anime) {
 
     if (
-      anime.watchedEpisodes
-      <
-      anime.episodes
+      (anime.watchedEpisodes ?? 0) <
+      (anime.episodes ?? 0)
     ) {
 
-      anime.watchedEpisodes++;
+      anime.watchedEpisodes =
+        (anime.watchedEpisodes ?? 0) + 1;
 
       this.storageService
         .updateAnime(anime);
     }
   }
 
-  decreaseEpisode(anime: any) {
+  decreaseEpisode(anime: Anime) {
 
-    if (
-      anime.watchedEpisodes > 0
-    ) {
+    if ((anime.watchedEpisodes ?? 0) > 0) {
 
-      anime.watchedEpisodes--;
+      anime.watchedEpisodes =
+        (anime.watchedEpisodes ?? 0) - 1;
 
       this.storageService
         .updateAnime(anime);
     }
   }
 
-  updateStatus(anime: any) {
+  updateStatus(anime: Anime) {
     this.storageService
       .updateAnime(anime);
   }

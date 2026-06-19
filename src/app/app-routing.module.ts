@@ -8,6 +8,7 @@ import { StatisticsComponent } from './features/statistics/statistics.component'
 import { SettingsComponent } from './features/settings/settings.component';
 import { FavoritesComponent } from './features/favorites/favorites.component';
 import { RecentlyViewedComponent } from './features/recently-viewed/recently-viewed.component';
+import { ContinueWatchingComponent } from './features/continue-watching/continue-watching.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'recent', component: RecentlyViewedComponent },
+  {
+    path: 'continue', component: ContinueWatchingComponent },
   { path: '**', redirectTo: '' }
 ];
 
