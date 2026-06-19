@@ -1,19 +1,16 @@
 <div *ngIf="anime">
 
-    <img [src]="anime.coverImage.large" [alt]="anime.title.english || anime.title.romaji">
+    <img [src]="anime?.coverImage?.large" [alt]="anime?.title?.english || anime?.title?.romaji">
 
-    <h1>{{ anime.title.english || anime.title.romaji }}</h1>
+    <h1>
+        {{ anime?.title?.english || anime?.title?.romaji }}
+    </h1>
 
-    <p>
-        Episodes: {{ anime.episodes }}
-    </p>
+    <p>Episodes: {{ anime?.episodes }}</p>
 
-    <p>
-        Score: {{ anime.averageScore }}
-    </p>
+    <p>Score: {{ anime?.score }}</p>
 
-    <p [innerHTML]="anime.description">
-    </p>
+    <p>{{ anime?.synopsis }}</p>
 
     <button (click)="addToWatchlist()">
         Add to Watchlist

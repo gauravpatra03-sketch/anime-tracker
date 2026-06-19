@@ -54,8 +54,12 @@
 ========================= */
 
 .chart-container {
+  width: 100%;
   max-width: 500px;
-  margin: 40px auto;
-  text-align: center;
+  margin: auto;
+}
+
+canvas {
+  max-width: 100%;
 }
 

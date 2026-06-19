@@ -17,6 +17,8 @@ import { SettingsComponent } from './features/settings/settings.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FavoritesComponent } from './features/favorites/favorites.component';
+import { RecentlyViewedComponent } from './features/recently-viewed/recently-viewed.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { HttpClientModule } from '@angular/common/http';
     AnimeDetailsComponent,
     TrackerComponent,
     StatisticsComponent,
-    SettingsComponent
+    SettingsComponent,
+    FavoritesComponent,
+    RecentlyViewedComponent
   ],
   imports: [
     BrowserModule,

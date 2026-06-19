@@ -1,11 +1,20 @@
 .anime-card {
-  width: 200px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
+  width: 250px;
+  background: white;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.anime-card img {
+  width: 100%;
   border-radius: 10px;
 }
 
-img {
-  width: 100%;
+@media (max-width: 768px) {
+  .anime-card {
+    width: 100%;
+    max-width: 350px;
+  }
 }

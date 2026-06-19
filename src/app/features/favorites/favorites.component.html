@@ -1,0 +1,13 @@
+<h2>My Favorites ❤️</h2>
+
+<div class="results">
+  <div *ngFor="let anime of favorites">
+
+    <app-anime-card [anime]="anime"></app-anime-card>
+
+    <button (click)="remove(anime)">
+      Remove ❌
+    </button>
+
+  </div>
+</div>
