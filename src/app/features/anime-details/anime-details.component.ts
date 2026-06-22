@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimeService } from 'src/app/core/services/anime.service';
 import { StorageService } from 'src/app/core/services/storage.service';
-import { Anime } from 'src/app/models/anime';
-
+import { Anime } from 'src/app/models/anime.model';
+import { Location } from '@angular/common';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-anime-details',
@@ -17,8 +18,14 @@ export class AnimeDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private animeService: AnimeService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private location: Location,
+    private toastService: ToastService
   ) { }
+
+  goBack() {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -76,10 +83,16 @@ export class AnimeDetailsComponent implements OnInit {
         .addToWatchlist(animeToSave);
 
     if (added) {
-      alert('Added to watchlist!');
+
+      this.toastService.success(
+        `${this.getTitle()} added to Watchlist ✅`
+      );
     }
     else {
-      alert('Anime already exists!');
+
+      this.toastService.warning(
+        `${this.getTitle()} already exists ⚠️`
+      );
     }
   }
 
@@ -98,4 +111,6 @@ export class AnimeDetailsComponent implements OnInit {
       ''
     );
   }
+
+
 }

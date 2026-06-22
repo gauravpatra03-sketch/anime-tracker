@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Anime } from 'src/app/models/anime';
+import { Anime } from 'src/app/models/anime.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,30 @@ export class StorageService {
 
   constructor() { }
 
-  private favoritesSubject = new BehaviorSubject<Anime[]>(this.getFavorites());
-  favorites$ = this.favoritesSubject.asObservable();
+  private watchlistSubject =
+    new BehaviorSubject<Anime[]>(
+      this.getWatchlist()
+    );
+
+  watchlist$ =
+    this.watchlistSubject.asObservable();
+
+  private favoritesSubject =
+    new BehaviorSubject<Anime[]>(
+      this.getFavorites()
+    );
+
+  favorites$ =
+    this.favoritesSubject
+      .asObservable();
+
+  private recentSubject =
+    new BehaviorSubject<Anime[]>(
+      this.getRecentlyViewed()
+    );
+
+  recentlyViewed$ =
+    this.recentSubject.asObservable();
 
   getWatchlist() {
     return JSON.parse(
@@ -37,6 +59,10 @@ export class StorageService {
       JSON.stringify(watchlist)
     );
 
+    this.watchlistSubject.next(
+      watchlist
+    );
+
     return true;
   }
 
@@ -59,6 +85,33 @@ export class StorageService {
       'watchlist',
       JSON.stringify(updatedWatchlist)
     );
+
+    this.watchlistSubject.next(
+      updatedWatchlist
+    );
+  }
+
+  removeAnime(id: number) {
+
+    const watchlist =
+      this.getWatchlist();
+
+    const updatedWatchlist =
+      watchlist.filter(
+        (anime: Anime) =>
+          anime.id !== id
+      );
+
+    localStorage.setItem(
+      'watchlist',
+      JSON.stringify(
+        updatedWatchlist
+      )
+    );
+
+    this.watchlistSubject.next(
+      updatedWatchlist
+    );
   }
 
   getFavorites() {
@@ -80,8 +133,10 @@ export class StorageService {
 
     localStorage.setItem('favorites', JSON.stringify(updated));
 
-    // 🔥 notify all components instantly
-    this.favoritesSubject.next(updated);
+    this.favoritesSubject.next(
+      updated
+    );
+    
   }
 
   isFavorite(anime: Anime): boolean {
@@ -106,6 +161,10 @@ export class StorageService {
     list = list.slice(0, 10);
 
     localStorage.setItem('recentlyViewed', JSON.stringify(list));
+
+    this.recentSubject.next(
+      list
+    );
   }
 
   getContinueWatching() {
@@ -117,6 +176,60 @@ export class StorageService {
         anime.episodes &&
         anime.watchedEpisodes > 0 &&
         anime.watchedEpisodes < anime.episodes
+    );
+  }
+
+  exportWatchlist() {
+
+    const watchlist =
+      this.getWatchlist();
+
+    const json =
+      JSON.stringify(
+        watchlist,
+        null,
+        2
+      );
+
+    const blob =
+      new Blob(
+        [json],
+        {
+          type:
+            'application/json'
+        }
+      );
+
+    const url =
+      window.URL.createObjectURL(
+        blob
+      );
+
+    const a =
+      document.createElement('a');
+
+    a.href = url;
+
+    a.download =
+      'watchlist.json';
+
+    a.click();
+
+    window.URL
+      .revokeObjectURL(url);
+  }
+
+  importWatchlist(
+    animes: Anime[]
+  ) {
+
+    localStorage.setItem(
+      'watchlist',
+      JSON.stringify(animes)
+    );
+
+    this.watchlistSubject.next(
+      animes
     );
   }
 }

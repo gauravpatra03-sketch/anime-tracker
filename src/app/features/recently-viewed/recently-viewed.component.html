@@ -1,8 +1,38 @@
-<h2>Recently Viewed 🔥</h2>
+<div class="recent-page">
 
-<div class="results">
-  <app-anime-card
-    *ngFor="let anime of recentlyViewed"
-    [anime]="anime">
-  </app-anime-card>
+  <h1 class="page-title">
+    🔥 Recently Viewed
+  </h1>
+
+  <p
+    class="subtitle"
+    *ngIf="recentlyViewed.length > 0"
+  >
+    Continue exploring the anime you've recently checked.
+  </p>
+
+  <div
+    class="empty-state"
+    *ngIf="recentlyViewed.length === 0"
+  >
+    <h2>🕒 No recently viewed anime.</h2>
+
+    <p>
+      Start searching anime and they'll appear here.
+    </p>
+  </div>
+
+  <div
+    class="results"
+    *ngIf="recentlyViewed.length > 0"
+  >
+
+    <app-anime-card
+      *ngFor="let anime of recentlyViewed"
+      [anime]="anime">
+
+    </app-anime-card>
+
+  </div>
+
 </div>

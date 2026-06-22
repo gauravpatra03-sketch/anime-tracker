@@ -1,19 +1,63 @@
-<div *ngIf="anime">
+<div class="details-page">
 
-    <img [src]="anime?.coverImage?.large" [alt]="getTitle()">
+  <button
+    class="back-btn"
+    (click)="goBack()"
+  >
+    ← Back to Search
+  </button>
 
-    <h1>
+  <div
+    class="details-card"
+    *ngIf="anime"
+  >
+
+    <div class="poster-section">
+
+      <img
+        [src]="anime.coverImage?.large"
+        [alt]="getTitle()"
+      >
+
+    </div>
+
+    <div class="info-section">
+
+      <h1>
         {{ getTitle() }}
-    </h1>
+      </h1>
 
-    <p>Episodes: {{ anime?.episodes }}</p>
+      <div class="meta-info">
 
-    <p>Score: {{ anime?.score }}</p>
+        <div class="meta-box">
+          📺 {{ anime.episodes || 'Unknown' }}
+          Episodes
+        </div>
 
-    <p>{{ anime?.synopsis }}</p>
+        <div class="meta-box">
+          ⭐ {{ anime.score || 'N/A' }}
+        </div>
 
-    <button (click)="addToWatchlist()">
-        Add to Watchlist
-    </button>
+      </div>
+
+      <div class="synopsis-box">
+
+        <h3>Synopsis</h3>
+
+        <p [innerHTML]="anime.synopsis">
+        </p>
+
+      </div>
+
+      <button
+        class="watchlist-btn"
+        (click)="addToWatchlist()"
+      >
+        ➕ Add to Watchlist
+      </button>
+
+    </div>
+
+  </div>
 
 </div>

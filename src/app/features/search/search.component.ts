@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import { AnimeService } from 'src/app/core/services/anime.service';
 import {
   Subject,
@@ -6,8 +9,14 @@ import {
   distinctUntilChanged
 } from 'rxjs';
 import { retry } from 'rxjs/operators';
-import { Anime } from 'src/app/models/anime';
-
+import { Anime } from 'src/app/models/anime.model';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import { Location } from '@angular/common';
+import { SearchStateService } from 'src/app/core/services/search-state.service';
+import { HostListener } from '@angular/core';
 
 
 @Component({
@@ -19,81 +28,133 @@ export class SearchComponent implements OnInit {
 
   searchText: string = '';
   animes: Anime[] = [];
-
-  isLoading = false;
+  page = 1;
+  hasMore = true;
+  isLoadingMore = false;
+  loading = false;
   errorMessage = '';
 
   private searchSubject =
     new Subject<string>();
 
-  constructor(private animeService: AnimeService) { }
+  constructor(
+    private animeService: AnimeService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+    private searchState: SearchStateService
+  ) { }
+
+  goBack() {
+    this.location.back();
+  }
 
   search() {
 
-    if (this.searchText.trim().length < 3) {
+    const query =
+      this.searchText.trim();
+
+    if (query.length < 3) {
       this.animes = [];
-      this.errorMessage =
-        'Please type at least 3 characters.';
-      this.isLoading = false;
       return;
     }
 
-    this.isLoading = true;
-    this.errorMessage = '';
+    this.page = 1;
 
-    this.animeService
-      .searchAnime(this.searchText)
-      .pipe(
-        retry(2)
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.animes = res.data.Page.media || [];
-          this.isLoading = false;
-        },
-        error: () => {
-          this.errorMessage =
-            'Anime API is currently slow. Please try again.';
-          this.animes = [];
-          this.isLoading = false;
+    this.router.navigate(
+      ['/search'],
+      {
+        queryParams: {
+          q: query,
+          page: 1
         }
-      });
-  }
-
-  searchAnime(query: string) {
-
-    this.isLoading = true;
-    this.errorMessage = '';
-
-    this.animeService
-      .searchAnime(query)
-      .pipe(
-        retry(2)
-      )
-      .subscribe({
-        next: (res: any) => {
-          this.animes =
-            res.data.Page.media || [];
-
-          this.isLoading = false;
-        },
-        error: () => {
-          this.errorMessage =
-            'Anime API is currently slow. Please try again.';
-          this.animes = [];
-          this.isLoading = false;
-        }
-      });
-  }
-
-  onSearch() {
-    console.log('Input changed:', this.searchText);
-    this.searchSubject.next(
-      this.searchText
+      }
     );
   }
 
+  performSearch(query: string, append = false) {
+
+    const key = this.searchState.getCacheKey(query, this.page);
+
+    // 🔥 1. CHECK MEMORY CACHE FIRST
+    if (this.searchState.cache.has(key)) {
+
+      const cached = this.searchState.cache.get(key)!;
+
+      this.animes = append
+        ? [...this.animes, ...cached]
+        : cached;
+
+      return;
+    }
+
+    this.loading = true;
+
+    this.animeService.searchAnime(query, this.page)
+      .subscribe({
+        next: (animes: Anime[]) => {
+
+          this.searchState.cache.set(
+            this.searchState.getCacheKey(query, this.page),
+            animes
+          );
+
+          this.animes = append
+            ? [...this.animes, ...animes]
+            : animes;
+
+          // 🔥 SAVE AFTER UI UPDATE
+          setTimeout(() => {
+            this.searchState.save(
+              query,
+              this.page,
+              this.animes
+            );
+          });
+
+          this.loading = false;
+        }
+      })
+  }
+
+  onSearch() {
+    this.page = 1;
+    this.searchSubject.next(this.searchText);
+  }
+
   ngOnInit() {
+
+    this.route.queryParams
+      .subscribe(params => {
+
+        const q = params['q'];
+        const page =
+          Number(params['page']) || 1;
+
+        if (q) {
+
+          this.searchText = q;
+          this.page = page;
+
+          const key =
+            this.searchState
+              .getCacheKey(q, page);
+
+          if (
+            this.searchState.cache.has(key)
+          ) {
+
+            this.animes =
+              this.searchState
+                .cache
+                .get(key)!;
+
+            return;
+          }
+
+          this.performSearch(q);
+        }
+      });
 
     this.searchSubject
       .pipe(
@@ -109,9 +170,46 @@ export class SearchComponent implements OnInit {
           return;
         }
 
-        this.searchAnime(query);
-      });
+        this.page = 1;
 
+        this.router.navigate(
+          ['/search'],
+          {
+            queryParams: {
+              q: query,
+              page: 1
+            }
+          }
+        );
+      });
   }
+
+  loadMore() {
+
+    if (
+      this.loading ||
+      this.isLoadingMore
+    ) {
+      return;
+    }
+
+    this.page++;
+
+    this.router.navigate(
+      ['/search'],
+      {
+        queryParams: {
+          q: this.searchText.trim(),
+          page: this.page
+        }
+      }
+    );
+  }
+
+  @HostListener('window:scroll')
+  onScroll() {
+    this.searchState.saveScroll(window.scrollY);
+  }
+
 
 }
