@@ -1,21 +1,64 @@
-<a routerLink="/">Home</a>
-<a routerLink="/search">Search</a>
-<a routerLink="/recent">
-    🔥 Recently Viewed
-</a>
-<a routerLink="/tracker">Tracker</a>
-<a routerLink="/statistics">Statistics</a>
-<a routerLink="/favorites">
-    ❤️ Favorites ({{ favoritesCount }})
-</a>
-<a routerLink="/continue">
-  ▶️ Continue Watching
-</a>
-<a routerLink="/settings">Settings</a>
-<button (click)="themeService.toggleTheme()">
+<nav>
 
-    {{ themeService.isDarkMode
-    ? '☀️ Light'
-    : '🌙 Dark' }}
+  <div class="nav-links">
 
-</button>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Home
+    </a>
+
+    <a routerLink="/search" routerLinkActive="active">
+      Search
+    </a>
+
+    <a routerLink="/recent" routerLinkActive="active">
+      🔥 Recently Viewed
+    </a>
+
+    <a routerLink="/tracker" routerLinkActive="active">
+      Tracker
+    </a>
+
+    <a routerLink="/statistics" routerLinkActive="active">
+      Statistics
+    </a>
+
+    <a routerLink="/favorites" routerLinkActive="active">
+      ❤️ Favorites ({{ favoritesCount }})
+    </a>
+
+    <a routerLink="/continue-watching" routerLinkActive="active">
+      ▶️ Continue Watching
+    </a>
+
+  </div>
+
+  <div class="nav-actions">
+
+    <button
+      class="theme-btn"
+      (click)="themeService.toggleTheme()">
+
+      {{ themeService.isDarkMode
+      ? '☀️'
+      : '🌙' }}
+
+    </button>
+
+    <div
+      class="profile-btn"
+      routerLink="/profile">
+
+      <img
+        *ngIf="avatar"
+        [src]="avatar"
+        alt="Profile">
+
+      <span *ngIf="!avatar">
+        👤
+      </span>
+
+    </div>
+
+  </div>
+
+</nav>

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
-import { Anime } from 'src/app/models/anime';
-
+import { Anime } from 'src/app/models/anime.model';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-anime-card',
@@ -14,7 +14,10 @@ export class AnimeCardComponent {
 
   isFav = false;
 
-  constructor(private storageService: StorageService) { }
+  constructor(
+    private storageService: StorageService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.storageService.favorites$.subscribe(favs => {
@@ -23,8 +26,33 @@ export class AnimeCardComponent {
   }
 
   toggleFavorite(anime: Anime) {
-    this.storageService.toggleFavorite(anime);
-    this.isFav = this.storageService.isFavorite(anime);
+
+    const wasFavorite =
+      this.storageService
+        .isFavorite(anime);
+
+    this.storageService
+      .toggleFavorite(anime);
+
+    this.isFav =
+      this.storageService
+        .isFavorite(anime);
+
+    const title =
+      this.getTitle();
+
+    if (!wasFavorite) {
+
+      this.toastService.info(
+        `${title} added to Favorites ❤️`
+      );
+    }
+    else {
+
+      this.toastService.warning(
+        `${title} removed from Favorites 💔`
+      );
+    }
   }
 
   getImage(): string {

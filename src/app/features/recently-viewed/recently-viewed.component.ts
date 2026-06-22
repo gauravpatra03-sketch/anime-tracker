@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StorageService } from 'src/app/core/services/storage.service';
-import { Anime } from 'src/app/models/anime';
+import { Anime } from 'src/app/models/anime.model';
 
 
 @Component({

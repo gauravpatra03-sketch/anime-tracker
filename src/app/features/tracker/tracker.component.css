@@ -1,21 +1,361 @@
-.results {
+.tracker-page {
+
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px;
+}
+
+.tracker-header {
+
+  text-align: center;
+
+  padding: 50px;
+
+  margin-bottom: 50px;
+}
+
+.tracker-header h1 {
+
+  font-size: 3rem;
+
+  margin-bottom: 15px;
+}
+
+.tracker-header p {
+
+  color: #666;
+
+  margin-bottom: 35px;
+}
+
+.tracker-filters {
+
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 25px;
 }
 
-.anime-card {
-  width: 300px;
+.tracker-filters input,
+.tracker-filters select {
+
+  padding: 15px 20px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  min-width: 250px;
+
+  font-size: 15px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.8
+    );
+
+  backdrop-filter: blur(15px);
 }
 
-@media (max-width: 768px) {
+.tracker-actions {
 
-  .anime-card {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+
+  flex-wrap: wrap;
+}
+
+.export-btn,
+.import-btn {
+
+  padding:
+    15px 30px;
+
+  border: none;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f7c948,
+      #f5b301
+    );
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.export-btn:hover,
+.import-btn:hover {
+
+  transform:
+    translateY(-4px);
+}
+
+.empty-box {
+
+  text-align: center;
+
+  font-size: 22px;
+
+  padding: 80px;
+
+  color: #777;
+}
+
+.tracker-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(280px,1fr)
+    );
+
+  gap: 35px;
+}
+
+.tracker-card {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  backdrop-filter: blur(18px);
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.3
+    );
+
+  border-radius: 30px;
+
+  padding: 25px;
+
+  text-align: center;
+
+  box-shadow:
+    0 20px 45px
+    rgba(
+      0,
+      0,
+      0,
+      0.15
+    );
+
+  transition: 0.3s;
+}
+
+.tracker-card:hover {
+
+  transform:
+    translateY(-10px);
+}
+
+.tracker-card img {
+
+  width: 100%;
+  height: 320px;
+
+  object-fit: cover;
+
+  border-radius: 20px;
+
+  margin-bottom: 20px;
+}
+
+.tracker-card h3 {
+
+  margin-bottom: 12px;
+
+  min-height: 60px;
+}
+
+.episodes {
+
+  color: #666;
+
+  margin-bottom: 20px;
+}
+
+.tracker-card select {
+
+  width: 100%;
+
+  padding: 12px;
+
+  border-radius: 20px;
+
+  margin-top: 20px;
+
+  border: none;
+}
+
+.episode-buttons {
+
+  display: flex;
+
+  justify-content: center;
+
+  gap: 15px;
+
+  margin-top: 20px;
+}
+
+.episode-buttons button {
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #f7c948;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.remove-btn {
+
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 14px;
+
+  border: none;
+
+  border-radius: 20px;
+
+  background: #ff5757;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+
+  transform:
+    translateY(-3px);
+}
+
+.dark-theme .tracker-header p,
+.dark-theme .episodes {
+
+  color: #d0d0d0;
+}
+
+.dark-theme .tracker-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    );
+
+  color: white;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+}
+
+.dark-theme
+.tracker-filters input,
+.dark-theme
+.tracker-filters select {
+
+  background:
+    rgba(
+      35,
+      35,
+      55,
+      0.8
+    );
+
+  color: white;
+}
+
+.dark-theme
+.export-btn,
+.dark-theme
+.import-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    );
+
+  color: white;
+}
+
+.dark-theme
+.episode-buttons button {
+
+  background:
+    #7c5cff;
+
+  color: white;
+}
+
+@media (max-width:768px) {
+
+  .tracker-page {
+
+    padding: 20px;
+  }
+
+  .tracker-header {
+
+    padding: 35px 20px;
+  }
+
+  .tracker-header h1 {
+
+    font-size: 2.2rem;
+  }
+
+  .tracker-filters input,
+  .tracker-filters select {
+
     width: 100%;
   }
 
-  .anime-card img {
-    width: 120px;
+  .tracker-card img {
+
+    height: 250px;
   }
 }

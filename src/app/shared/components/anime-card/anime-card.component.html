@@ -1,35 +1,40 @@
 <div class="anime-card" *ngIf="anime">
 
-  <img
-    [src]="getImage()"
-    [alt]="getTitle()"
-  />
+  <img [src]="getImage()" [alt]="getTitle()" />
 
-  <h3>
-    {{ getTitle() }}
-  </h3>
+  <div class="card-content">
 
-  <p>
-    Episodes:
-    {{ anime.episodes || 'Unknown' }}
-  </p>
+    <h3>
+      {{ getTitle() }}
+    </h3>
 
-  <p *ngIf="anime.score">
-    Score:
-    {{ anime.score }}
-  </p>
+    <p>
+      Episodes:
+      {{ anime.episodes || 'Unknown' }}
+    </p>
 
-  <button
-    *ngIf="anime.id"
-    [routerLink]="['/anime', anime.id]"
-  >
-    View Details
-  </button>
+    <p class="score">
+      <ng-container *ngIf="anime.score; else emptyScore">
+        Score: ⭐ {{ anime.score }}
+      </ng-container>
 
-  <button
-    (click)="toggleFavorite(anime)"
-  >
-    {{ isFav ? '❤️ Favorited' : '🤍 Favorite' }}
-  </button>
+      <ng-template #emptyScore>
+        &nbsp;
+      </ng-template>
+    </p>
+
+    <div class="card-buttons">
+
+      <button class="details-btn" *ngIf="anime.id" [routerLink]="['/anime', anime.id]">
+        View Details
+      </button>
+
+      <button class="favorite-btn" [class.active]="isFav" (click)="toggleFavorite(anime)">
+        {{ isFav ? '❤️ Favorite' : '🤍 Favorite' }}
+      </button>
+
+    </div>
+
+  </div>
 
 </div>

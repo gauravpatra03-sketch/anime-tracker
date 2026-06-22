@@ -1,46 +1,186 @@
-<div class="results" *ngFor="let anime of watchlist">
+<div class="tracker-page">
 
-    <select [(ngModel)]="anime.status" (change)="updateStatus(anime)">
-        <option value="Plan to Watch">
-            Plan to Watch
+  <div class="tracker-header glass-card">
+
+    <h1>📚 My Anime Tracker</h1>
+
+    <p>
+      Manage your watchlist and track your progress.
+    </p>
+
+    <div class="tracker-filters">
+
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="🔍 Search your watchlist..."
+      >
+
+      <select [(ngModel)]="selectedStatus">
+
+        <option value="All">All Status</option>
+        <option value="Watching">Watching</option>
+        <option value="Completed">Completed</option>
+        <option value="Plan to Watch">Plan to Watch</option>
+        <option value="Dropped">Dropped</option>
+        <option value="On Hold">On Hold</option>
+
+      </select>
+
+      <select [(ngModel)]="sortOption">
+
+        <option value="title-asc">
+          Title (A-Z)
         </option>
 
+        <option value="title-desc">
+          Title (Z-A)
+        </option>
+
+        <option value="watched">
+          Episodes Watched
+        </option>
+
+        <option value="remaining">
+          Episodes Remaining
+        </option>
+
+        <option value="status">
+          Status
+        </option>
+
+      </select>
+
+    </div>
+
+    <div class="tracker-actions">
+
+      <button class="export-btn"
+        (click)="exportWatchlist()">
+
+        📤 Export
+
+      </button>
+
+      <label class="import-btn">
+
+        📥 Import
+
+        <input
+          type="file"
+          accept=".json"
+          (change)="onImport($event)"
+          hidden
+        >
+
+      </label>
+
+    </div>
+
+  </div>
+
+  <div
+    *ngIf="watchlist.length === 0"
+    class="empty-box"
+  >
+
+    🎬 Your watchlist is empty.
+
+  </div>
+
+  <div class="tracker-grid">
+
+    <div
+      class="tracker-card"
+      *ngFor="
+        let anime of
+        getFilteredWatchlist()
+      "
+    >
+
+      <img
+        [src]="getImage(anime)"
+      >
+
+      <h3>
+
+        {{ getTitle(anime) }}
+
+      </h3>
+
+      <p class="episodes">
+
+        {{ anime.watchedEpisodes || 0 }}
+        /
+        {{ anime.episodes || 0 }}
+        Episodes
+
+      </p>
+
+      <app-progress-bar
+        [watchedEpisodes]="
+          anime.watchedEpisodes || 0
+        "
+        [totalEpisodes]="
+          anime.episodes || 0
+        "
+      >
+      </app-progress-bar>
+
+      <select
+        [(ngModel)]="anime.status"
+        (change)="updateStatus(anime)"
+      >
+
         <option value="Watching">
-            Watching
+          Watching
         </option>
 
         <option value="Completed">
-            Completed
+          Completed
+        </option>
+
+        <option value="Plan to Watch">
+          Plan to Watch
         </option>
 
         <option value="Dropped">
-            Dropped
+          Dropped
         </option>
 
         <option value="On Hold">
-            On Hold
+          On Hold
         </option>
-    </select>
 
-    <img [src]="anime.image" width="150">
+      </select>
 
-    <h3>{{ anime.title }}</h3>
+      <div class="episode-buttons">
 
-    <p>
-        {{ anime.watchedEpisodes || 0 }}
-        /
-        {{ anime.episodes }}
-    </p>
+        <button
+          (click)="decreaseEpisode(anime)"
+        >
+          −
+        </button>
 
-    <button (click)="decreaseEpisode(anime)">
-        -
-    </button>
+        <button
+          (click)="increaseEpisode(anime)"
+        >
+          +
+        </button>
 
-    <button (click)="increaseEpisode(anime)">
-        +
-    </button>
+      </div>
 
-    <app-progress-bar [watchedEpisodes]="anime.watchedEpisodes || 0" [totalEpisodes]="anime.episodes || 0">
-    </app-progress-bar>
+      <button
+        class="remove-btn"
+        (click)="removeAnime(anime)"
+      >
+
+        🗑 Remove
+
+      </button>
+
+    </div>
+
+  </div>
 
 </div>

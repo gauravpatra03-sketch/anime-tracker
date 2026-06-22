@@ -1,12 +1,21 @@
-<div class="progress-container">
+<div class="progress-wrapper">
 
-  <div
-    class="progress-fill"
-    [style.width.%]="getProgressPercentage()">
+  <div class="progress-track">
+
+    <div class="progress-fill" [style.width.%]="progressPercentage">
+    </div>
+
+  </div>
+
+  <span class="progress-text">
+    {{ progressPercentage }}%
+  </span>
+
+  <div class="episode-info">
+    {{ watchedEpisodes }}
+    /
+    {{ totalEpisodes }}
+    Episodes
   </div>
 
 </div>
-
-<p>
-  {{ getProgressPercentage() }}%
-</p>

@@ -13,15 +13,22 @@ export class ProgressBarComponent {
   @Input()
   totalEpisodes = 0;
 
-  getProgressPercentage(): number {
+  get progressPercentage(): number {
 
-    if (this.totalEpisodes === 0) {
+    if (!this.totalEpisodes) {
       return 0;
     }
 
     return Math.round(
+      (this.watchedEpisodes / this.totalEpisodes)
+      * 100
+    );
+  }
+
+  getPercentage() {
+    return Math.round(
       (this.watchedEpisodes /
-      this.totalEpisodes) * 100
+        this.totalEpisodes) * 100
     );
   }
 }

@@ -1,0 +1,56 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+export interface Toast {
+  message: string;
+  type:
+    | 'success'
+    | 'warning'
+    | 'error'
+    | 'info';
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ToastService {
+
+  private toastSubject =
+    new BehaviorSubject<Toast | null>(
+      null
+    );
+
+  toast$ =
+    this.toastSubject.asObservable();
+
+  show(
+    message: string,
+    type: Toast['type']
+  ) {
+
+    this.toastSubject.next({
+      message,
+      type
+    });
+
+    setTimeout(() => {
+      this.toastSubject.next(null);
+    }, 3000);
+  }
+
+  success(message: string) {
+    this.show(message, 'success');
+  }
+
+  warning(message: string) {
+    this.show(message, 'warning');
+  }
+
+  error(message: string) {
+    this.show(message, 'error');
+  }
+
+  info(message: string) {
+    this.show(message, 'info');
+  }
+}

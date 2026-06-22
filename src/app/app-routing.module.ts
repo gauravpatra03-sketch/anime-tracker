@@ -5,10 +5,10 @@ import { SearchComponent } from './features/search/search.component';
 import { AnimeDetailsComponent } from './features/anime-details/anime-details.component';
 import { TrackerComponent } from './features/tracker/tracker.component';
 import { StatisticsComponent } from './features/statistics/statistics.component';
-import { SettingsComponent } from './features/settings/settings.component';
 import { FavoritesComponent } from './features/favorites/favorites.component';
 import { RecentlyViewedComponent } from './features/recently-viewed/recently-viewed.component';
 import { ContinueWatchingComponent } from './features/continue-watching/continue-watching.component';
+import { ProfileComponent } from './features/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,11 +16,10 @@ const routes: Routes = [
   { path: 'anime/:id', component: AnimeDetailsComponent },
   { path: 'tracker', component: TrackerComponent },
   { path: 'statistics', component: StatisticsComponent },
-  { path: 'settings', component: SettingsComponent },
   { path: 'favorites', component: FavoritesComponent },
   { path: 'recent', component: RecentlyViewedComponent },
-  {
-    path: 'continue', component: ContinueWatchingComponent },
+  { path: 'continue-watching', component: ContinueWatchingComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: '**', redirectTo: '' }
 ];
 

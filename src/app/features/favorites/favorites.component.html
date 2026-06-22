@@ -1,13 +1,53 @@
-<h2>My Favorites ❤️</h2>
+<div class="favorites-page">
 
-<div class="results">
-  <div *ngFor="let anime of favorites">
+  <div class="favorites-header">
 
-    <app-anime-card [anime]="anime"></app-anime-card>
+    <h1>❤️ My Favorites</h1>
 
-    <button (click)="remove(anime)">
-      Remove ❌
-    </button>
+    <p>
+      Your personal collection of beloved anime.
+    </p>
 
   </div>
+
+  <div
+    *ngIf="favorites.length === 0"
+    class="empty-state"
+  >
+
+    <h2>❤️ No Favorite Anime Yet</h2>
+
+    <p>
+      Start adding anime to build your collection.
+    </p>
+
+  </div>
+
+  <div
+    *ngIf="favorites.length > 0"
+    class="favorites-grid"
+  >
+
+    <div
+      class="favorite-item"
+      *ngFor="let anime of favorites"
+    >
+
+      <app-anime-card
+        [anime]="anime">
+      </app-anime-card>
+
+      <button
+        class="remove-btn"
+        (click)="remove(anime)"
+      >
+
+        ❌ Remove
+
+      </button>
+
+    </div>
+
+  </div>
+
 </div>

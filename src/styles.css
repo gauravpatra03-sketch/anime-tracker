@@ -1,38 +1,111 @@
 /* =========================
-   BASE STYLES
+   GLOBAL VARIABLES
+========================= */
+
+:root {
+
+  --primary: #f7c948;
+  --secondary: #1f1f1f;
+
+  --shadow:
+    0 8px 32px rgba(
+      0,
+      0,
+      0,
+      0.15
+    );
+
+  --radius: 30px;
+}
+
+/* =========================
+   GLOBAL BODY
 ========================= */
 
 body {
+
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-  color: #111;
-  transition: 0.3s;
+
+  font-family:
+    'Poppins',
+    sans-serif;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8f5ef,
+      #ece6da
+    );
+
+  min-height: 100vh;
 }
 
 /* =========================
-   DARK THEME ROOT
+   GLASS EFFECT
+========================= */
+
+.glass {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.35
+    );
+
+  backdrop-filter:
+    blur(20px);
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.4
+    );
+
+  border-radius:
+    30px;
+
+  box-shadow:
+    0 8px 32px
+    rgba(
+      0,
+      0,
+      0,
+      0.15
+    );
+}
+
+/* =========================
+   DARK THEME BASE
 ========================= */
 
 .dark-theme {
-  background-color: #121212;
+  background: #121212;
   color: #ffffff;
 }
 
-/* =========================
-   GLOBAL ELEMENTS
-========================= */
+/* TEXT DEFAULTS */
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme h3,
+.dark-theme p,
+.dark-theme span {
+  color: inherit;
+}
 
-.dark-theme button {
-  background: #333;
+/* CARDS (global base only) */
+.dark-theme .anime-card,
+.dark-theme .stat-card {
+  background: #1e1e1e;
   color: white;
-  border: 1px solid #555;
+  border-color: rgba(255,255,255,0.08);
 }
 
-.dark-theme a {
-  color: #90caf9;
-}
-
+/* INPUTS */
 .dark-theme input,
 .dark-theme select {
   background: #2d2d2d;
@@ -40,40 +113,44 @@ body {
   border: 1px solid #555;
 }
 
-/* =========================
-   ANIME CARD
-========================= */
-
-.anime-card {
-  background: white;
-  color: #111;
-  transition: 0.3s;
+/* LINKS */
+.dark-theme a {
+  color: #90caf9;
 }
 
-.dark-theme .anime-card {
-  background: #1e1e1e;
-  color: #ffffff;
+/* BUTTONS */
+.dark-theme button {
+  background: #333;
+  color: white;
+  border: 1px solid #555;
 }
 
 /* =========================
-   STAT CARD (GLOBAL SAFE)
+   CARDS
 ========================= */
 
+.anime-card,
 .stat-card {
+
   background: white;
+
   color: #111;
+
   transition: 0.3s;
 }
 
+.dark-theme .anime-card,
 .dark-theme .stat-card {
+
   background: #1e1e1e;
-  color: #ffffff;
+
+  color: white;
 }
 
-/* Force readability */
 .dark-theme .stat-card h3,
 .dark-theme .stat-card p {
-  color: #ffffff !important;
+
+  color: white !important;
 }
 
 /* =========================
@@ -81,31 +158,724 @@ body {
 ========================= */
 
 .insight-box {
+
   background: #f5f5f5;
+
   color: #111;
+
   padding: 15px;
+
   border-radius: 10px;
+
   text-align: center;
-  transition: 0.3s;
 }
 
 .dark-theme .insight-box {
+
   background: #2a2a2a;
-  color: #ffffff;
+
+  color: white;
 }
 
+/* =========================
+   BUTTONS
+========================= */
+
 button {
+
   cursor: pointer;
+
   transition: 0.2s;
 }
 
 button:hover {
-  transform: scale(1.05);
+
+  transform: translateY(-2px);
 }
 
 button,
-select,
 input,
-a {
+select {
+
   min-height: 44px;
+}
+
+/* =========================
+   HOME DARK MODE 
+========================= */
+
+body.dark-theme app-home .home-container {
+  background-image:
+    linear-gradient(rgba(10, 10, 25, 0.70),
+      rgba(10, 10, 25, 0.70)),
+    url("/assets/images/homedark-bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+body.dark-theme app-home .glass-card {
+
+  background:
+    rgba(25,
+      20,
+      45,
+      0.55) !important;
+
+  border:
+    1px solid rgba(124,
+      92,
+      255,
+      0.25) !important;
+
+  box-shadow:
+    0 25px 60px rgba(0,
+      0,
+      0,
+      0.5) !important;
+}
+
+body.dark-theme app-home .hero-content h1 {
+
+  color: white !important;
+
+  text-shadow:
+    0 0 25px rgba(120,
+      150,
+      255,
+      0.45) !important;
+}
+
+body.dark-theme app-home .hero-content p {
+
+  color: #d8d8d8 !important;
+}
+
+body.dark-theme app-home .stat-card {
+
+  background:
+    rgba(35,
+      30,
+      60,
+      0.55) !important;
+
+  border:
+    1px solid rgba(124,
+      92,
+      255,
+      0.2) !important;
+}
+
+body.dark-theme app-home .stat-card:hover {
+
+  box-shadow:
+    0 0 30px rgba(124,
+      92,
+      255,
+      0.45) !important;
+}
+
+body.dark-theme app-home .stat-card h2 {
+  color: white !important;
+}
+
+body.dark-theme app-home .stat-card span {
+  color: #d6d6d6 !important;
+}
+
+body.dark-theme app-home .primary-btn {
+
+  background:
+    linear-gradient(135deg,
+      #7c5cff,
+      #5f43ff) !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-home .secondary-btn {
+
+  background:
+    rgba(255,
+      255,
+      255,
+      0.08) !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-home .primary-btn:hover,
+body.dark-theme app-home .secondary-btn:hover {
+
+  box-shadow:
+    0 0 30px rgba(110,
+      130,
+      255,
+      0.35) !important;
+}
+
+/* =========================
+   NAVBAR DARK MODE 
+========================= */
+
+body.dark-theme nav {
+
+  background:
+    rgba(18,18,35,0.65) !important;
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.08) !important;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.45) !important;
+}
+
+body.dark-theme app-navbar nav a {
+
+  color: #ffffff !important;
+}
+
+body.dark-theme app-navbar nav a:hover {
+
+  background:
+    rgba(124,92,255,0.25) !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-navbar nav a.active,
+body.dark-theme app-navbar nav a.router-link-active {
+
+  background: #7c5cff !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-navbar nav button {
+
+  background: #7c5cff !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-navbar nav button:hover {
+
+  background: #9378ff !important;
+}
+
+body.dark-theme app-navbar .profile-btn {
+
+  background:
+    rgba(124,92,255,0.25) !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-navbar .profile-btn:hover {
+
+  background:
+    rgba(124,92,255,0.4) !important;
+}
+
+/* ===========================
+   STATISTICS DARK MODE
+=========================== */
+
+body.dark-theme app-statistics .statistics-header p {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme app-statistics .stat-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  box-shadow:
+    0 20px 40px
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    ) !important;
+}
+
+body.dark-theme app-statistics .stat-card h3 {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme app-statistics .stat-card h2 {
+
+  color: white !important;
+}
+
+body.dark-theme app-statistics .completion-card h2 {
+
+  color: #a78bfa !important;
+}
+
+body.dark-theme app-statistics .insight-box p {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme app-statistics .chart-card h2 {
+
+  color: white !important;
+}
+
+/* ===========================
+   SEARCH DARK MODE
+=========================== */
+
+body.dark-theme .search-page .load-more-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    ) !important;
+
+  color: white !important;
+
+  box-shadow:
+    0 12px 28px
+    rgba(
+      124,
+      92,
+      255,
+      0.45
+    ) !important;
+}
+
+body.dark-theme .search-page .load-more-btn:hover {
+
+  box-shadow:
+    0 18px 35px
+    rgba(
+      124,
+      92,
+      255,
+      0.65
+    ) !important;
+}
+
+body.dark-theme .search-box input {
+
+  background:
+    rgba(
+      35,
+      35,
+      55,
+      0.8
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme
+body.search-box input::placeholder {
+
+  color: #cfcfcf !important;
+}
+
+body.dark-theme .search-box button,
+body.dark-theme .load-more {
+
+  background: #7c5cff !important;
+
+  color: white !important;
+}
+
+/* =========================
+   ANIME DETAILS DARK MODE
+========================= */
+
+body.dark-theme .details-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+}
+
+body.dark-theme .info-section h1 {
+
+  color: white !important;
+}
+
+body.dark-theme .synopsis-box h3 {
+
+  color: white !important;
+}
+
+body.dark-theme .synopsis-box p {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme .meta-box {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme .back-btn {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme .watchlist-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    ) !important;
+
+  color: white !important;
+}
+
+
+/* =====================
+   FAVORITES DARK MODE
+===================== */
+
+body.dark-theme .favorites-header h1 {
+
+  color: white !important;
+}
+
+body.dark-theme .favorites-header p {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme .empty-state {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+}
+
+body.dark-theme .empty-state h2 {
+
+  color: white !important;
+}
+
+body.dark-theme .empty-state p {
+
+  color: #d5d5d5 !important;
+}
+
+
+/* -------------------------------------- */
+.dark-theme .score {
+  color: #d5d5d5;
+}
+/* ------------------------------------- */
+
+/* ========================
+   RECENTLY VIEWED DARK MODE
+======================== */
+
+body.dark-theme .page-title {
+  color: white !important;
+}
+
+body.dark-theme .subtitle {
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme .empty-state {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  box-shadow:
+    0 20px 40px
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    ) !important;
+}
+
+body.dark-theme .empty-state h2 {
+  color: white !important;
+}
+
+body.dark-theme .empty-state p {
+  color: #d5d5d5 !important;
+}
+
+
+/* ==========================
+   CONTINUE WATCHING DARK MODE
+========================== */
+
+body.dark-theme .page-title {
+  color: white !important;
+}
+
+body.dark-theme .subtitle {
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme .continue-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+}
+
+body.dark-theme .card-content h3 {
+  color: white !important;
+}
+
+body.dark-theme .episode-text {
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme .resume-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    ) !important;
+
+  color: white !important;
+
+  box-shadow:
+    0 10px 25px
+    rgba(
+      124,
+      92,
+      255,
+      0.45
+    ) !important;
+}
+
+body.dark-theme .resume-btn:hover {
+
+  box-shadow:
+    0 18px 35px
+    rgba(
+      124,
+      92,
+      255,
+      0.65
+    ) !important;
+}
+
+body.dark-theme .empty-box {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  color: white !important;
+}
+
+/* ==========================
+   DARK MODE
+========================== */
+
+body.dark-theme app-profile .profile-header,
+body.dark-theme app-profile .profile-card,
+body.dark-theme app-profile .stat-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  box-shadow:
+    0 20px 40px
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    ) !important;
+}
+
+body.dark-theme app-profile .profile-header p,
+body.dark-theme app-profile .stat-card h3 {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme app-profile .stat-card h2,
+body.dark-theme app-profile .profile-header h1,
+body.dark-theme app-profile .profile-card h2 {
+
+  color: white !important;
+}
+
+body.dark-theme app-profile input,
+body.dark-theme app-profile textarea {
+
+  background:
+    rgba(
+      40,
+      40,
+      65,
+      0.7
+    ) !important;
+
+  color: white !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+}
+
+body.dark-theme app-profile .profile-card button {
+
+  background: #7c5cff !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-profile .upload-btn,
+body.dark-theme app-profile button {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #9b84ff
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme app-profile .avatar {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #9b84ff
+    ) !important;
+
+  box-shadow:
+    0 15px 35px
+    rgba(
+      124,
+      92,
+      255,
+      0.45
+  ) !important;
 }

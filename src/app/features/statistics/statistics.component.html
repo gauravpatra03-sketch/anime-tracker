@@ -1,67 +1,88 @@
-<h1>Anime Statistics 📊</h1>
+<div class="statistics-page">
 
-<div class="stats-container">
+    <div class="statistics-header glass-card">
 
-    <div class="stat-card">
-        <h3>📺 Total Anime</h3>
-        <p>{{ totalAnime }}</p>
+        <h1>Anime Statistics 📊</h1>
+
+        <p>
+            Monitor your anime journey and track your progress.
+        </p>
+
     </div>
 
-    <div class="stat-card">
-        <h3>🎬 Episodes Watched</h3>
-        <p>{{ episodesWatched }}</p>
+    <div class="stats-grid">
+
+        <div class="stat-card">
+            <h3>📺 Total Anime</h3>
+            <h2>{{ totalAnime }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>🎬 Episodes Watched</h3>
+            <h2>{{ episodesWatched }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>👀 Watching</h3>
+            <h2>{{ watching }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>✅ Completed</h3>
+            <h2>{{ completed }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>📝 Plan To Watch</h3>
+            <h2>{{ planToWatch }}</h2>
+        </div>
+
+        <div class="stat-card">
+            <h3>❌ Dropped</h3>
+            <h2>{{ dropped }}</h2>
+        </div>
+
+        <div class="stat-card completion-card">
+            <h3>📈 Completion</h3>
+            <h2>{{ completionPercentage }}%</h2>
+        </div>
+
     </div>
 
-    <div class="stat-card">
-        <h3>👀 Watching</h3>
-        <p>{{ watching }}</p>
+    <div class="insight-box glass-card">
+
+        <h3>📊 Insight</h3>
+
+        <p *ngIf="completionPercentage < 30">
+            You're just getting started. Keep watching!
+        </p>
+
+        <p *ngIf="
+        completionPercentage >= 30 &&
+        completionPercentage < 70
+      ">
+            Good progress! You're halfway through your journey.
+        </p>
+
+        <p *ngIf="completionPercentage >= 70">
+            Amazing! You're almost done with your watchlist.
+        </p>
+
     </div>
 
-    <div class="stat-card">
-        <h3>✅ Completed</h3>
-        <p>{{ completed }}</p>
+    <div class="chart-card glass-card">
+
+        <h2>
+            Watchlist Status Distribution 📊
+        </h2>
+
+        <div class="chart-container">
+
+            <canvas baseChart [data]="pieChartData" [type]="pieChartType" [options]="pieChartOptions">
+            </canvas>
+
+        </div>
+
     </div>
-
-    <div class="stat-card">
-        <h3>📝 Plan to Watch</h3>
-        <p>{{ planToWatch }}</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>❌ Dropped</h3>
-        <p>{{ dropped }}</p>
-    </div>
-
-    <div class="stat-card">
-        <h3>📈 Completion</h3>
-        <p>{{ completionPercentage }}%</p>
-    </div>
-
-</div>
-
-<div class="insight-box">
-
-    <h3>📊 Insight</h3>
-
-    <p *ngIf="completionPercentage < 30">
-        You're just getting started. Keep watching!
-    </p>
-
-    <p *ngIf="completionPercentage >= 30 && completionPercentage < 70">
-        Good progress! You're halfway through your journey.
-    </p>
-
-    <p *ngIf="completionPercentage >= 70">
-        Amazing! You're almost done with your watchlist.
-    </p>
-
-</div>
-
-<div class="chart-container">
-
-    <h2>Watchlist Status Distribution 📊</h2>
-
-    <canvas baseChart [data]="pieChartData" [type]="pieChartType">
-    </canvas>
 
 </div>

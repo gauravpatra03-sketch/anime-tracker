@@ -1,25 +1,62 @@
-<h2>Search Anime</h2>
+<div class="search-page">
 
-<input [(ngModel)]="searchText" (input)="onSearch()" placeholder="Search anime...">
+  <div class="search-container glass-card">
 
-<p *ngIf="searchText.length > 0 &&
-          searchText.length < 3">
-  Type at least 3 characters...
-</p>
+    <h1>Search Anime</h1>
 
-<button (click)="search()">
-    Search
-</button>
+    <p class="subtitle">
+      Discover new anime and build your collection.
+    </p>
 
-<div *ngIf="isLoading">
-  🔍 Searching anime...
-</div>
+    <div class="search-box">
 
-<div *ngIf="errorMessage">
-  ⚠️ {{ errorMessage }}
-</div>
+      <input [(ngModel)]="searchText" (input)="onSearch()" placeholder="🔍 Search anime...">
 
-<div class="results">
+      <button class="search-btn" (click)="search()">
+
+        Search
+
+      </button>
+
+    </div>
+
+    <p class="hint" *ngIf="
+        searchText.length > 0 &&
+        searchText.length < 3
+      ">
+
+      Type at least 3 characters...
+
+    </p>
+
+    <div class="error-box" *ngIf="errorMessage">
+
+      ⚠️ {{ errorMessage }}
+
+    </div>
+
+    <div *ngIf="loading" class="loading">
+
+      🔄 Loading Anime...
+
+    </div>
+
+  </div>
+
+  <div class="results">
+
     <app-anime-card *ngFor="let anime of animes" [anime]="anime">
+
     </app-anime-card>
+
+  </div>
+
+  <button class="load-more-btn" *ngIf="
+    animes.length > 0 &&
+    hasMore &&
+    !loading
+  " (click)="loadMore()">
+    Load More Anime
+  </button>
+
 </div>

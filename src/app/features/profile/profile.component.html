@@ -1,0 +1,155 @@
+<div class="profile-page">
+
+    <div class="profile-header glass">
+
+        <div class="avatar">
+
+            <img *ngIf="profile.avatar" [src]="profile.avatar">
+
+            <span *ngIf="!profile.avatar">
+
+                👤
+
+            </span>
+
+        </div>
+
+        <label class="upload-btn">
+
+            📸 Change Avatar
+
+            <input type="file" accept="image/*" (change)="onAvatarSelected($event)" hidden>
+
+        </label>
+
+        <h1>
+            {{ profile.username }}
+        </h1>
+
+        <p>
+            {{ profile.bio }}
+        </p>
+
+    </div>
+
+    <!-- EDIT SECTION -->
+
+    <div class="profile-card glass">
+
+        <h2>
+            Edit Profile
+        </h2>
+
+        <input [(ngModel)]="profile.username" placeholder="Username">
+
+        <textarea [(ngModel)]="profile.bio" placeholder="Write your bio...">
+    </textarea>
+
+        <input [(ngModel)]="profile.favoriteAnime" placeholder="Favourite Anime">
+
+        <input [(ngModel)]="profile.favoriteGenre" placeholder="Favourite Genre">
+
+        <input [(ngModel)]="profile.favoriteCharacter" placeholder="Favourite Character">
+
+        <button (click)="saveProfile()">
+
+            Save Profile
+
+        </button>
+
+    </div>
+
+    <!-- INTERESTS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card glass">
+
+            <h3>
+                Favourite Anime
+            </h3>
+
+            <h2>
+                {{
+                profile.favoriteAnime
+                || 'Not Set'
+                }}
+            </h2>
+
+        </div>
+
+        <div class="stat-card glass">
+
+            <h3>
+                Favourite Genre
+            </h3>
+
+            <h2>
+                {{
+                profile.favoriteGenre
+                || 'Not Set'
+                }}
+            </h2>
+
+        </div>
+
+        <div class="stat-card glass">
+
+            <h3>
+                Favourite Character
+            </h3>
+
+            <h2>
+                {{
+                profile.favoriteCharacter
+                || 'Not Set'
+                }}
+            </h2>
+
+        </div>
+
+    </div>
+
+    <!-- ANIME STATS -->
+
+    <div class="stats-grid">
+
+        <div class="stat-card glass">
+
+            <h3>
+                Watching
+            </h3>
+
+            <h2>
+                {{ totalWatching }}
+            </h2>
+
+        </div>
+
+        <div class="stat-card glass">
+
+            <h3>
+                Completed
+            </h3>
+
+            <h2>
+                {{ totalCompleted }}
+            </h2>
+
+        </div>
+
+        <div class="stat-card glass">
+
+            <h3>
+                Episodes Watched
+            </h3>
+
+            <h2>
+                {{ totalEpisodes }}
+            </h2>
+
+        </div>
+
+    </div>
+
+</div>

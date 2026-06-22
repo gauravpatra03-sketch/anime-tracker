@@ -1,0 +1,130 @@
+.recent-page {
+
+  max-width: 1500px;
+
+  margin: auto;
+
+  padding: 40px;
+}
+
+/* ========================
+   HEADER
+======================== */
+
+.page-title {
+
+  text-align: center;
+
+  font-size: 3rem;
+
+  font-weight: 700;
+
+  margin-bottom: 15px;
+
+  color: #222;
+}
+
+.subtitle {
+
+  text-align: center;
+
+  color: #666;
+
+  margin-bottom: 50px;
+
+  font-size: 17px;
+}
+
+/* ========================
+   EMPTY STATE
+======================== */
+
+.empty-state {
+
+  max-width: 500px;
+
+  margin: 100px auto;
+
+  text-align: center;
+
+  padding: 50px;
+
+  border-radius: 30px;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.22
+    );
+
+  backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 15px 35px
+    rgba(
+      0,
+      0,
+      0,
+      0.12
+    );
+}
+
+.empty-state h2 {
+
+  margin-bottom: 20px;
+
+  color: #444;
+}
+
+.empty-state p {
+
+  color: #777;
+}
+
+/* ========================
+   GRID
+======================== */
+
+.results {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(260px, 1fr)
+    );
+
+  gap: 35px;
+
+  margin-top: 40px;
+}
+
+/* ========================
+   MOBILE
+======================== */
+
+@media (max-width:768px) {
+
+  .recent-page {
+    padding: 25px;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .results {
+    gap: 25px;
+  }
+
+  .empty-state {
+    padding: 35px 25px;
+  }
+}
