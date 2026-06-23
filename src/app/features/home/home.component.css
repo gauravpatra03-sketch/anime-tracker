@@ -208,26 +208,105 @@
   color: #555;
 }
 
-@media (max-width: 768px) {
+@media (max-width:768px) {
 
-  .hero-content h1 {
+  .home-container {
 
-    font-size: 2.7rem;
-  }
+    min-height: auto;
 
-  .hero-content p {
+    padding: 12px;
 
-    font-size: 1rem;
+    align-items: flex-start;
   }
 
   .glass-card {
 
-    padding: 50px 25px;
+    width: 100%;
+
+    padding: 25px 15px;
+
+    border-radius: 20px;
+  }
+
+  .hero-content h1 {
+
+    font-size: 1.8rem;
+
+    line-height: 1.2;
+
+    margin-bottom: 12px;
+  }
+
+  .hero-content p {
+
+    font-size: 0.95rem;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+  }
+
+  .hero-buttons {
+
+    flex-direction: column;
+
+    gap: 10px;
+  }
+
+  .primary-btn,
+  .secondary-btn {
+
+    width: 100%;
+
+    padding: 12px;
+
+    font-size: 14px;
+  }
+
+  .stats {
+
+    margin-top: 25px;
+
+    gap: 10px;
   }
 
   .stat-card {
 
-    width: 150px;
+    width: calc(50% - 5px);
+
+    padding: 15px;
+
+    border-radius: 15px;
   }
+
+  .stat-card h2 {
+
+    font-size: 1.5rem;
+  }
+
+  .stat-card span {
+
+    font-size: 12px;
+
+    margin-top: 6px;
+  }
+
 }
 
+@media (max-width:768px) {
+
+  .home-container {
+
+    background-attachment: scroll;
+  }
+
+}
+
+@media (max-width:480px) {
+
+  .stat-card {
+
+    width: 100%;
+  }
+
+}

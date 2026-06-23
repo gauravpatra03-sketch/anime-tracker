@@ -14,13 +14,19 @@ export class NavbarComponent {
 
   username = 'Anime Fan';
 
-  avatar = '';
+  showMore = false;
+
+  avatar: string | null = null;
 
   constructor(
     public themeService: ThemeService,
     private storageService: StorageService,
     private profileService: ProfileService
   ) { }
+
+  toggleMoreMenu(): void {
+    this.showMore = !this.showMore;
+  }
 
   ngOnInit() {
 
