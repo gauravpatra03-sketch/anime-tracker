@@ -46,9 +46,6 @@
 
 .avatar {
 
-  width: 150px;
-  height: 150px;
-
   margin: auto;
   margin-bottom: 30px;
 
@@ -61,22 +58,17 @@
   align-items: center;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #f7c948,
-      #ffd86b
-    );
+      #ffd86b);
 
   font-size: 4rem;
 
   box-shadow:
-    0 15px 35px
-    rgba(
-      247,
+    0 15px 35px rgba(247,
       201,
       72,
-      0.45
-    );
+      0.45);
 
   position: relative;
 }
@@ -92,23 +84,21 @@
   border-radius: 50%;
 
   border:
-    3px solid
-    rgba(
+    3px solid rgba(255,
       255,
       255,
-      255,
-      0.5
-    );
+      0.5);
 }
 
-.avatar img {
-
+.profile-header .avatar img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
+}
 
-  border-radius: 50%;
+.profile-header .avatar {
+  width: 130px;
+  height: 130px;
 }
 
 /* ==========================
@@ -147,12 +137,10 @@
   border-radius: 22px;
 
   background:
-    rgba(
+    rgba(255,
       255,
       255,
-      255,
-      0.5
-    );
+      0.5);
 
   font-size: 15px;
 
@@ -166,21 +154,16 @@
     translateY(-3px);
 
   box-shadow:
-    0 10px 25px
-    rgba(
+    0 10px 25px rgba(0,
       0,
       0,
-      0,
-      0.12
-    );
+      0.12);
 
   background:
-    rgba(
+    rgba(255,
       255,
       255,
-      255,
-      0.75
-    );
+      0.75);
 }
 
 .profile-card textarea {
@@ -197,13 +180,10 @@
     translateY(-2px);
 
   box-shadow:
-    0 8px 20px
-    rgba(
+    0 8px 20px rgba(0,
       0,
       0,
-      0,
-      0.12
-    );
+      0.12);
 }
 
 /* ==========================
@@ -221,11 +201,9 @@
   border-radius: 35px;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #f7c948,
-      #ffd86b
-    );
+      #ffd86b);
 
   font-size: 16px;
 
@@ -242,13 +220,10 @@
     translateY(-4px);
 
   box-shadow:
-    0 15px 35px
-    rgba(
-      247,
+    0 15px 35px rgba(247,
       201,
       72,
-      0.4
-    );
+      0.4);
 }
 
 /* ==========================
@@ -261,9 +236,11 @@
 
   grid-template-columns:
     repeat(
-      auto-fit,
-      minmax(250px, 1fr)
+      auto-fill,
+      minmax(250px, 300px)
     );
+
+  justify-content: center;
 
   gap: 25px;
 
@@ -291,13 +268,10 @@
     translateY(-12px);
 
   box-shadow:
-    0 20px 45px
-    rgba(
+    0 20px 45px rgba(0,
       0,
       0,
-      0,
-      0.15
-    );
+      0.15);
 }
 
 .stat-card h3 {
@@ -332,11 +306,9 @@
   border-radius: 50px;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       #f7c948,
-      #ffd86b
-    );
+      #ffd86b);
 
   font-weight: 600;
 
@@ -345,13 +317,10 @@
   transition: all 0.3s;
 
   box-shadow:
-    0 8px 25px
-    rgba(
-      247,
+    0 8px 25px rgba(247,
       201,
       72,
-      0.3
-    );
+      0.3);
 }
 
 .upload-btn:hover {
@@ -360,13 +329,10 @@
     translateY(-5px);
 
   box-shadow:
-    0 15px 35px
-    rgba(
-      247,
+    0 15px 35px rgba(247,
       201,
       72,
-      0.45
-    );
+      0.45);
 }
 
 /* ==========================
@@ -376,41 +342,120 @@
 @media (max-width:768px) {
 
   .profile-page {
-
-    padding: 20px;
+    padding: 12px;
   }
 
   .profile-header {
 
-    padding: 35px 20px;
+    padding: 20px 12px;
+
+    margin-bottom: 20px;
   }
 
   .profile-header h1 {
 
-    font-size: 2.3rem;
+    font-size: 1.8rem;
   }
 
-  .avatar {
+  .profile-header p {
 
-    width: 100px;
+    font-size: 0.9rem;
 
-    height: 100px;
+    line-height: 1.5;
+  }
 
-    font-size: 3rem;
+  .profile-header .avatar {
+
+    width: 90px;
+    height: 90px;
+
+    font-size: 2.5rem;
+
+    margin-bottom: 20px;
   }
 
   .profile-card {
 
-    padding: 30px 20px;
+    padding: 20px 15px;
+
+    margin-bottom: 20px;
+  }
+
+  .profile-card h2 {
+
+    font-size: 1.4rem;
+
+    margin-bottom: 20px;
+  }
+
+  .profile-card input,
+  .profile-card textarea {
+
+    padding: 14px 16px;
+
+    font-size: 14px;
+  }
+
+  .profile-card button {
+
+    padding: 14px;
+
+    font-size: 14px;
+  }
+
+  .stats-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
   }
 
   .stat-card {
 
-    padding: 25px;
+    padding: 15px;
+
+    border-radius: 18px;
+  }
+
+  .stat-card h3 {
+
+    font-size: 12px;
   }
 
   .stat-card h2 {
 
-    font-size: 1.7rem;
+    font-size: 1.3rem;
+
+    margin-top: 10px;
   }
+
+  .upload-btn {
+
+    width: 100%;
+
+    justify-content: center;
+
+    padding: 12px;
+
+    font-size: 14px;
+  }
+}
+
+@media (max-width:480px) {
+
+  .stats-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .profile-header .avatar {
+
+    width: 80px;
+    height: 80px;
+  }
+
 }

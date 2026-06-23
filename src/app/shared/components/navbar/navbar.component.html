@@ -1,6 +1,5 @@
-<nav>
-
-  <div class="nav-links">
+<nav class="desktop-nav">
+    <div class="nav-links">
 
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
       Home
@@ -34,9 +33,7 @@
 
   <div class="nav-actions">
 
-    <button
-      class="theme-btn"
-      (click)="themeService.toggleTheme()">
+    <button class="theme-btn" (click)="themeService.toggleTheme()">
 
       {{ themeService.isDarkMode
       ? '☀️'
@@ -44,14 +41,42 @@
 
     </button>
 
+    <div class="navbar-profile" routerLink="/profile">
+
+      <img *ngIf="avatar" [src]="avatar">
+
+      <span *ngIf="!avatar">
+        👤
+      </span>
+
+    </div>
+
+  </div>
+</nav>
+
+<nav class="mobile-topbar">
+
+  <div class="logo">
+    Anime Tracker
+  </div>
+
+  <div class="nav-actions">
+
+    <button
+      class="theme-btn"
+      (click)="themeService.toggleTheme()">
+
+      {{ themeService.isDarkMode ? '☀️' : '🌙' }}
+
+    </button>
+
     <div
-      class="profile-btn"
+      class="navbar-profile"
       routerLink="/profile">
 
       <img
         *ngIf="avatar"
-        [src]="avatar"
-        alt="Profile">
+        [src]="avatar">
 
       <span *ngIf="!avatar">
         👤
@@ -62,3 +87,58 @@
   </div>
 
 </nav>
+
+<div class="mobile-bottom-nav">
+
+  <a routerLink="/">
+    <span>🏠</span>
+    <small>Home</small>
+  </a>
+
+  <a routerLink="/search">
+    <span>🔍</span>
+    <small>Search</small>
+  </a>
+
+  <a routerLink="/tracker">
+    <span>📚</span>
+    <small>Track</small>
+  </a>
+
+  <a routerLink="/favorites">
+    <span>❤️</span>
+    <small>Fav</small>
+  </a>
+
+  <button
+    class="more-btn"
+    (click)="toggleMoreMenu()">
+
+    <span>☰</span>
+    <small>More</small>
+
+  </button>
+
+</div>
+
+<div
+  class="more-menu"
+  *ngIf="showMore">
+
+  <a routerLink="/recent">
+    🔥 Recent
+  </a>
+
+  <a routerLink="/continue-watching">
+    ▶️ Continue
+  </a>
+
+  <a routerLink="/statistics">
+    📊 Statistics
+  </a>
+
+  <a routerLink="/profile">
+    👤 Profile
+  </a>
+
+</div>

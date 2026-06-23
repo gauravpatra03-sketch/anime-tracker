@@ -319,24 +319,36 @@ body.dark-theme app-home .secondary-btn:hover {
    NAVBAR DARK MODE 
 ========================= */
 
-body.dark-theme nav {
-
-  background:
-    rgba(18,18,35,0.65) !important;
-
-  border-bottom:
-    1px solid rgba(255,255,255,0.08) !important;
-
-  box-shadow:
-    0 8px 30px rgba(0,0,0,0.45) !important;
+body.dark-theme .desktop-nav {
+  background: rgba(18,18,35,0.65) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
 }
 
-body.dark-theme app-navbar nav a {
+body.dark-theme .mobile-topbar {
+  background: rgba(18,18,35,0.65) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
+}
+
+body.dark-theme .mobile-bottom-nav {
+  background: rgba(18,18,35,0.75) !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 -8px 30px rgba(0,0,0,0.45) !important;
+}
+
+body.dark-theme .more-menu {
+  background: rgba(18,18,35,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45) !important;
+}
+
+body.dark-theme app-navbar a {
 
   color: #ffffff !important;
 }
 
-body.dark-theme app-navbar nav a:hover {
+body.dark-theme app-navbar a:hover {
 
   background:
     rgba(124,92,255,0.25) !important;
@@ -344,36 +356,34 @@ body.dark-theme app-navbar nav a:hover {
   color: white !important;
 }
 
-body.dark-theme app-navbar nav a.active,
-body.dark-theme app-navbar nav a.router-link-active {
+body.dark-theme app-navbar a.active,
+body.dark-theme app-navbar a.router-link-active {
 
   background: #7c5cff !important;
 
   color: white !important;
 }
 
-body.dark-theme app-navbar nav button {
+body.dark-theme app-navbar button {
 
   background: #7c5cff !important;
 
   color: white !important;
 }
 
-body.dark-theme app-navbar nav button:hover {
+body.dark-theme app-navbar button:hover {
 
   background: #9378ff !important;
 }
 
-body.dark-theme app-navbar .profile-btn {
-
+body.dark-theme app-navbar .navbar-profile {
   background:
     rgba(124,92,255,0.25) !important;
 
   color: white !important;
 }
 
-body.dark-theme app-navbar .profile-btn:hover {
-
+body.dark-theme app-navbar .navbar-profile:hover {
   background:
     rgba(124,92,255,0.4) !important;
 }
@@ -444,6 +454,12 @@ body.dark-theme app-statistics .chart-card h2 {
 /* ===========================
    SEARCH DARK MODE
 =========================== */
+
+body.dark-theme
+.search-container h1 {
+
+  color: white !important;
+}
 
 body.dark-theme .search-page .load-more-btn {
 
@@ -878,4 +894,228 @@ body.dark-theme app-profile .avatar {
       255,
       0.45
   ) !important;
+}
+
+/* =========================
+   ANIME CARD DARK MODE
+========================= */
+
+body.dark-theme .anime-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  box-shadow:
+    0 20px 40px
+    rgba(
+      0,
+      0,
+      0,
+      0.45
+    ) !important;
+}
+
+body.dark-theme
+.card-content h3 {
+
+  color: white !important;
+}
+
+body.dark-theme
+.card-content p {
+
+  color: #d5d5d5 !important;
+}
+
+body.dark-theme
+.card-buttons button:first-child {
+
+  background: #7c5cff !important;
+
+  color: white !important;
+}
+
+body.dark-theme
+.card-buttons button:last-child {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme .details-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme .details-btn:hover {
+
+  box-shadow:
+    0 12px 30px
+    rgba(
+      124,
+      92,
+      255,
+      0.45
+    ) !important;
+}
+
+body.dark-theme .favorite-btn {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+
+  color: white !important;
+}
+
+body.dark-theme .favorite-btn:hover {
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.15
+    ) !important;
+}
+
+body.dark-theme
+.favorite-btn.active {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff5e8e,
+      #ff3366
+    ) !important;
+
+  color: white !important;
+}
+
+/* =========================
+   TRACKER DARK MODE
+========================= */
+
+.dark-theme .tracker-header p,
+.dark-theme .episodes {
+
+  color: #d0d0d0 !important;
+}
+
+.dark-theme .tracker-card {
+
+  background:
+    rgba(
+      25,
+      25,
+      45,
+      0.55
+    ) !important;
+
+  color: white !important;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      0.08
+    ) !important;
+}
+
+.dark-theme
+.tracker-filters input,
+.dark-theme
+.tracker-filters select {
+
+  background:
+    rgba(
+      35,
+      35,
+      55,
+      0.8
+    ) !important;
+
+  color: white !important;
+}
+
+.dark-theme
+.export-btn,
+.dark-theme
+.import-btn {
+
+  background:
+    linear-gradient(
+      135deg,
+      #7c5cff,
+      #6545f6
+    ) !important;
+
+  color: white !important;
+}
+
+.dark-theme
+.episode-buttons button {
+
+  background:
+    #7c5cff !important;
+
+  color: white !important;
+}
+
+
+
+.anime-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 35px;
+}
+
+@media (max-width:768px) {
+
+  .anime-grid {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 12px;
+  }
+
 }
