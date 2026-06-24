@@ -406,7 +406,7 @@ body.dark-theme app-navbar .logo {
 
 body.dark-theme app-statistics .statistics-header p {
 
-  color: #d5d5d5 !important;
+  color: #d5d5d5 !important; 
 }
 
 body.dark-theme app-statistics .stat-card {
