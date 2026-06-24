@@ -1,5 +1,9 @@
 <nav class="desktop-nav">
-    <div class="nav-links">
+  <div class="logo" routerLink="/">
+    ✨ AniVault
+  </div>
+
+  <div class="nav-links">
 
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
       Home
@@ -56,27 +60,21 @@
 
 <nav class="mobile-topbar">
 
-  <div class="logo">
-    Anime Tracker
+  <div class="logo" routerLink="/">
+    ✨ AniVault
   </div>
 
   <div class="nav-actions">
 
-    <button
-      class="theme-btn"
-      (click)="themeService.toggleTheme()">
+    <button class="theme-btn" (click)="themeService.toggleTheme()">
 
       {{ themeService.isDarkMode ? '☀️' : '🌙' }}
 
     </button>
 
-    <div
-      class="navbar-profile"
-      routerLink="/profile">
+    <div class="navbar-profile" routerLink="/profile">
 
-      <img
-        *ngIf="avatar"
-        [src]="avatar">
+      <img *ngIf="avatar" [src]="avatar">
 
       <span *ngIf="!avatar">
         👤
@@ -110,9 +108,7 @@
     <small>Fav</small>
   </a>
 
-  <button
-    class="more-btn"
-    (click)="toggleMoreMenu()">
+  <button class="more-btn" (click)="toggleMoreMenu()">
 
     <span>☰</span>
     <small>More</small>
@@ -121,9 +117,7 @@
 
 </div>
 
-<div
-  class="more-menu"
-  *ngIf="showMore">
+<div class="more-menu" *ngIf="showMore">
 
   <a routerLink="/recent">
     🔥 Recent

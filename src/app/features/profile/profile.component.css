@@ -232,19 +232,21 @@
 
 .stats-grid {
 
+  max-width: 1000px;
+
+  margin: 0 auto 50px auto;
+
   display: grid;
 
   grid-template-columns:
     repeat(
-      auto-fill,
+      auto-fit,
       minmax(250px, 300px)
     );
 
   justify-content: center;
 
   gap: 25px;
-
-  margin-bottom: 50px;
 }
 
 /* ==========================
@@ -434,7 +436,7 @@
 
   .upload-btn {
 
-    width: 100%;
+    width: 90%;
 
     justify-content: center;
 
@@ -456,6 +458,6 @@
 
     width: 80px;
     height: 80px;
-  }
+  } 
 
 }
